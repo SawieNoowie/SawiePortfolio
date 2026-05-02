@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Sawie Collection — รวมผลงานทุกชิ้น เกม อนิเมชั่น การ์ตูน ไว้ในที่เดียว"/>
+<meta property="og:title" content="Sawie Collection"/>
+<meta property="og:description" content="รวมผลงานทุกชิ้น เกม อนิเมชั่น การ์ตูน ไว้ในที่เดียว"/>
+<meta property="og:type" content="website"/>
 <title>Sawie Collection</title>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Thai:wght@300;400;700&display=swap" rel="stylesheet"/>
 <style>
@@ -262,7 +266,7 @@ nav{
 .itch-card p{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);letter-spacing:1px;line-height:1.6;}
 .itch-tag{font-family:var(--font-crt);font-size:0.85rem;letter-spacing:2px;color:var(--yellow);border:1px solid var(--border);padding:0.1rem 0.5rem;width:fit-content;}
 
-/* WORKS — VIDEO WORKS */
+/* WORKS */
 .works-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem;}
 
 /* GALLERY */
@@ -557,7 +561,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
 
 <div class="divider"></div>
 
-<!-- ========== WORKS — VIDEO ========== -->
+<!-- ========== WORKS ========== -->
 <section class="sec" id="works">
   <div class="sec-label">&#10022; ผลงาน</div>
   <h2 class="sec-title">ผลงาน<br><span>อื่น ๆ</span></h2>
@@ -606,9 +610,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
     <div class="sec-label">&#128247; GALLERY &middot; ผลงานภาพ</div>
     <h2 class="sec-title" style="margin-bottom:0.5rem;">ภาพ<span>ผลงาน</span></h2>
     <p style="font-family:var(--font-mono);font-size:0.78rem;color:var(--muted);letter-spacing:1px;margin-bottom:1.5rem;">รวมภาพผลงาน รูปวาด ภาพจากเกม ภาพจากอนิเมชั่น</p>
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- รูปภาพจะถูก inject ด้วย JavaScript -->
-    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </div>
 
@@ -716,7 +718,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2re
     <li><a href="#about">ABOUT</a></li>
     <li><a href="#contact">CONTACT</a></li>
   </ul>
-  <p class="footer-copy">&copy; 2025 Sawie Collection &middot; &middot; All Rights Reserved</p>
+  <p class="footer-copy">&copy; 2025 Sawie Collection &middot; All Rights Reserved</p>
 </footer>
 
 <script>
@@ -735,7 +737,9 @@ function closeModal(e) {
   document.getElementById('videoModal').classList.remove('active');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal({}); closeLightbox(); } });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeModal({}); closeLightbox(); }
+});
 
 /* =============================================
    CONTACT FORM
@@ -753,11 +757,16 @@ function handleSubmit(e) {
    ============================================= */
 var obs = new IntersectionObserver(function (entries) {
   entries.forEach(function (en) {
-    if (en.isIntersecting) { en.target.style.opacity = '1'; en.target.style.transform = 'translateY(0)'; }
+    if (en.isIntersecting) {
+      en.target.style.opacity = '1';
+      en.target.style.transform = 'translateY(0)';
+    }
   });
 }, { threshold: 0.1 });
+
 document.querySelectorAll('.video-card,.platform-card,.itch-card,.gallery-item').forEach(function (el) {
-  el.style.opacity = '0'; el.style.transform = 'translateY(18px)';
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
   el.style.transition = 'opacity .5s ease,transform .5s ease,box-shadow .2s,border-color .2s';
   obs.observe(el);
 });
@@ -767,7 +776,8 @@ document.querySelectorAll('.video-card,.platform-card,.itch-card,.gallery-item')
    ============================================= */
 document.querySelectorAll('.key').forEach(function (k) {
   k.addEventListener('click', function () {
-    k.style.background = 'var(--yellow)'; k.style.color = 'var(--bg)';
+    k.style.background = 'var(--yellow)';
+    k.style.color = 'var(--bg)';
     setTimeout(function () { k.style.background = ''; k.style.color = ''; }, 200);
   });
 });
@@ -775,19 +785,12 @@ document.querySelectorAll('.key').forEach(function (k) {
 /* =============================================
    MUSIC PLAYER
    ─────────────────────────────────────────────
-   วางไฟล์ .mp3 ในโฟลเดอร์ music/ แล้วเพิ่มชื่อไฟล์
-   และชื่อเพลงในอาร์เรย์ด้านล่างนี้
-   ตัวอย่าง: { file: 'music/shadow_saw_us.mp3', title: 'SHADOW SAW US' }
+   วางไฟล์ .mp3 ในโฟลเดอร์ music/ แล้วแก้ชื่อด้านล่าง
    ============================================= */
 var playlist = [
-  // ▼ เพิ่มเพลงของคุณที่นี่ ▼
   { file: 'music/track1.mp3', title: 'TRACK 1' },
   { file: 'music/track2.mp3', title: 'TRACK 2' },
   { file: 'music/track3.mp3', title: 'TRACK 3' },
-  { file: 'music/track1.mp3', title: 'TRACK 4' },
-  { file: 'music/track2.mp3', title: 'TRACK 5' },
-  { file: 'music/track3.mp3', title: 'TRACK 6' },
-  { file: 'music/track3.mp3', title: 'TRACK 7' },
 ];
 
 var audio = document.getElementById('bgmAudio');
@@ -853,7 +856,6 @@ audio.addEventListener('timeupdate', function () {
 
 audio.addEventListener('ended', function () { nextTrack(); playTrack(); });
 
-// โหลดเพลงแรก + autoplay หลัง user gesture แรก
 loadTrack(0);
 document.addEventListener('click', function startAudio() {
   if (!isPlaying) playTrack();
@@ -863,17 +865,9 @@ document.addEventListener('click', function startAudio() {
 /* =============================================
    GALLERY
    ─────────────────────────────────────────────
-   วางรูปภาพในโฟลเดอร์ Photo/ แล้วเพิ่มชื่อไฟล์
-   และคำบรรยายในอาร์เรย์ด้านล่าง
-   ตัวอย่าง: { src: 'Photo/art01.jpg', caption: 'ARTWORK 01' }
+   วางรูปในโฟลเดอร์ Photo/ แล้วแก้ชื่อด้านล่าง
    ============================================= */
 var photos = [
-  // ▼ เพิ่มรูปภาพของคุณที่นี่ ▼
-  // { src: 'Photo/art01.jpg', caption: 'ARTWORK 01' },
-  // { src: 'Photo/art02.png', caption: 'ARTWORK 02' },
-  // { src: 'Photo/game01.jpg', caption: 'GAME SCREENSHOT' },
-  // ─────────────────────────────────────
-  // Placeholder ตัวอย่าง (จะหายไปเมื่อเพิ่มรูปจริง)
   { src: 'Photo/photo_01.jpg', caption: 'PHOTO 01' },
   { src: 'Photo/photo_02.jpg', caption: 'PHOTO 02' },
   { src: 'Photo/photo_03.jpg', caption: 'PHOTO 03' },
