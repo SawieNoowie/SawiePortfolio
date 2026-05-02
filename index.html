@@ -28,7 +28,6 @@
   --player-h: 56px;
 }
 
-/* ─── RESET ─────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
@@ -39,7 +38,6 @@ body{
   overflow-x:hidden;
 }
 
-/* ─── SCANLINE + FLICKER ─────────────────────────── */
 body::before{
   content:'';position:fixed;inset:0;
   background:repeating-linear-gradient(0deg,rgba(0,0,0,.13) 0px,rgba(0,0,0,.13) 1px,transparent 1px,transparent 3px);
@@ -53,7 +51,6 @@ body::after{
 }
 @keyframes flicker{0%,95%,100%{opacity:1;}96%{opacity:.6;}97%{opacity:1;}98%{opacity:.7;}99%{opacity:1;}}
 
-/* ─── NAVBAR ─────────────────────────────────────── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
@@ -97,7 +94,6 @@ nav{
 }
 @keyframes dotblink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
 
-/* Hamburger */
 .nav-hamburger{
   display:none;flex-direction:column;justify-content:center;
   gap:5px;background:none;border:1px solid var(--border);
@@ -111,7 +107,6 @@ nav{
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-/* Mobile drawer */
 .nav-drawer{
   display:none;position:fixed;top:var(--nav-h);left:0;right:0;
   background:var(--bg2);border-bottom:1px solid var(--border);
@@ -128,7 +123,6 @@ nav{
 }
 .nav-drawer ul a:hover{color:var(--yellow);}
 
-/* ─── MUSIC PLAYER ──────────────────────────────── */
 .music-player{
   position:fixed;bottom:0;left:0;right:0;z-index:300;
   background:var(--bg2);border-top:1px solid var(--border);
@@ -167,7 +161,6 @@ nav{
 .music-vol label{font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:1px;}
 .music-vol input[type=range]{width:60px;accent-color:var(--yellow);cursor:pointer;}
 
-/* ─── HERO ──────────────────────────────────────── */
 #hero{
   min-height:100svh;display:flex;flex-direction:column;
   align-items:center;justify-content:center;
@@ -248,11 +241,7 @@ nav{
 @keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top;opacity:1;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
-/* ─── SHARED ─────────────────────────────────────── */
-.sec{
-  padding:5rem 1.5rem;
-  max-width:1200px;margin:0 auto;
-}
+.sec{padding:5rem 1.5rem;max-width:1200px;margin:0 auto;}
 .sec-label{font-family:var(--font-crt);font-size:.95rem;letter-spacing:5px;text-transform:uppercase;color:var(--yellow);margin-bottom:.15rem;}
 .sec-title{
   font-family:var(--font-crt);
@@ -263,7 +252,6 @@ nav{
 .sec-title span{color:var(--yellow);}
 .divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);}
 
-/* ─── BUTTONS ────────────────────────────────────── */
 .btn{
   font-family:var(--font-crt);font-size:1.15rem;
   letter-spacing:3px;text-transform:uppercase;
@@ -276,7 +264,6 @@ nav{
 .btn-outline{background:transparent;color:var(--yellow);border:1px solid var(--yellow);box-shadow:3px 3px 0 var(--red);}
 .btn-outline:hover{background:var(--yellow);color:var(--bg);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red);}
 
-/* ─── VIDEO CARDS ────────────────────────────────── */
 .video-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));
@@ -311,7 +298,6 @@ nav{
 .video-info h3{font-family:var(--font-crt);font-size:1.25rem;letter-spacing:2px;color:var(--yellow2);margin-bottom:.15rem;}
 .video-info p{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:1px;}
 
-/* ─── VIDEO MODAL ────────────────────────────────── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;align-items:center;justify-content:center;padding:1rem;}
 .modal-overlay.active{display:flex;}
 .modal-content{position:relative;width:100%;max-width:880px;background:var(--bg2);border:1px solid var(--yellow);box-shadow:0 0 60px rgba(232,255,0,.2),6px 6px 0 var(--red);}
@@ -325,7 +311,6 @@ nav{
 .modal-video{width:100%;padding-top:56.25%;position:relative;}
 .modal-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
 
-/* ─── PLATFORM CARDS ─────────────────────────────── */
 .platform-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));
@@ -344,7 +329,6 @@ nav{
 .platform-card p{font-family:var(--font-mono);font-size:.74rem;color:var(--muted);letter-spacing:1px;}
 .platform-tag{font-family:var(--font-crt);font-size:.85rem;letter-spacing:2px;color:var(--yellow);border:1px solid var(--border);padding:.1rem .5rem;width:fit-content;}
 
-/* ─── ITCH.IO CARDS ──────────────────────────────── */
 .itch-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));
@@ -363,7 +347,6 @@ nav{
 .itch-card p{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:1px;line-height:1.6;}
 .itch-tag{font-family:var(--font-crt);font-size:.82rem;letter-spacing:2px;color:var(--yellow);border:1px solid var(--border);padding:.1rem .5rem;width:fit-content;}
 
-/* ─── GALLERY ────────────────────────────────────── */
 #gallery{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 1.5rem;}
 #gallery .inner{max-width:1200px;margin:0 auto;}
 .gallery-grid{
@@ -383,7 +366,6 @@ nav{
 .gallery-item:hover .gallery-overlay{opacity:1;}
 .gallery-overlay span{font-family:var(--font-crt);font-size:1.1rem;color:var(--yellow);letter-spacing:2px;}
 
-/* ─── LIGHTBOX ───────────────────────────────────── */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:600;align-items:center;justify-content:center;padding:1rem;}
 .lightbox.active{display:flex;}
 .lightbox-inner{position:relative;max-width:min(90vw,900px);width:100%;}
@@ -411,7 +393,6 @@ nav{
 .lightbox-next{right:-3rem;}
 .lightbox-nav:hover{background:var(--yellow);color:var(--bg);}
 
-/* ─── ABOUT TERMINAL ─────────────────────────────── */
 #about{background:var(--bg2);padding:5rem 1.5rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 #about .inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:center;}
 .about-terminal{background:var(--bg);border:1px solid var(--yellow);width:340px;box-shadow:6px 6px 0 rgba(255,0,0,.25);flex-shrink:0;}
@@ -431,7 +412,6 @@ nav{
 .about-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.3rem;}
 .about-tag{font-family:var(--font-crt);font-size:.95rem;letter-spacing:2px;padding:.2rem .65rem;border:1px solid var(--border);color:var(--yellow);}
 
-/* ─── PROFILE ─────────────────────────────────────── */
 .profile-grid{display:grid;grid-template-columns:300px 1fr;gap:3rem;align-items:center;}
 .profile-img-wrap{position:relative;}
 .profile-img-wrap img{width:100%;border:1px solid var(--border);box-shadow:6px 6px 0 var(--red);filter:contrast(1.1) brightness(.9);display:block;}
@@ -445,46 +425,98 @@ nav{
 .profile-text p{margin-bottom:.7rem;}
 .profile-text strong{color:var(--yellow2);}
 
-/* ─── CONTACT ────────────────────────────────────── */
-.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
-.contact-info .sec-title{margin-bottom:1rem;}
-.contact-info p{color:var(--muted);font-size:.86rem;font-family:var(--font-mono);letter-spacing:1px;line-height:1.8;margin-bottom:1.5rem;}
-.email-pill{
-  display:inline-flex;align-items:center;gap:.45rem;
-  font-family:var(--font-crt);font-size:1.05rem;letter-spacing:2px;
+/* ─── CONTACT — NEW STATIC STYLE ─────────────────── */
+.contact-static{
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;
+}
+.contact-info-block .sec-title{margin-bottom:1rem;}
+.contact-info-block p{
+  color:var(--muted);font-size:.86rem;font-family:var(--font-mono);
+  letter-spacing:1px;line-height:1.8;margin-bottom:1.5rem;
+}
+.contact-links{display:flex;flex-direction:column;gap:.85rem;}
+.contact-pill{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--font-crt);font-size:1.1rem;letter-spacing:2px;
   color:var(--yellow);background:var(--bg2);border:1px solid var(--yellow);
-  padding:.45rem 1.1rem;text-decoration:none;
+  padding:.55rem 1.2rem;text-decoration:none;
   box-shadow:3px 3px 0 rgba(255,0,0,.2);transition:all .15s;
   word-break:break-all;
 }
-.email-pill:hover{background:var(--yellow);color:var(--bg);box-shadow:5px 5px 0 var(--red);transform:translate(-2px,-2px);}
-.contact-form{display:flex;flex-direction:column;gap:1rem;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-.form-group{display:flex;flex-direction:column;gap:.32rem;}
-.form-group label{font-family:var(--font-crt);font-size:.9rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);}
-.form-group input,.form-group select,.form-group textarea{
+.contact-pill:hover{background:var(--yellow);color:var(--bg);box-shadow:5px 5px 0 var(--red);transform:translate(-2px,-2px);}
+.contact-pill .pill-icon{font-size:1.2rem;flex-shrink:0;}
+
+/* ─── FLOATING COMMENTS ──────────────────────────── */
+.comments-panel{
   background:var(--bg2);border:1px solid var(--border);
+  padding:1.6rem;position:relative;overflow:hidden;
+}
+.comments-panel-header{
+  font-family:var(--font-crt);font-size:1.1rem;letter-spacing:4px;
+  color:var(--yellow);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;
+  text-transform:uppercase;
+}
+.comments-panel-header .dot-blink{flex-shrink:0;}
+.comment-input-row{display:flex;gap:.6rem;margin-bottom:1.2rem;}
+.comment-input-row input{
+  flex:1;background:var(--bg);border:1px solid var(--border);
   color:var(--white);font-family:var(--font-mono);font-size:.85rem;
-  letter-spacing:1px;padding:.65rem .85rem;outline:none;resize:none;
-  transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;
-  border-radius:0;font-size:16px; /* prevent iOS zoom */
+  letter-spacing:1px;padding:.55rem .85rem;outline:none;
+  transition:border-color .2s;
+  border-radius:0;font-size:16px;
 }
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
-  border-color:var(--yellow);
-  box-shadow:0 0 0 2px rgba(255,0,0,.1),3px 3px 0 var(--yellow);
+.comment-input-row input:focus{border-color:var(--yellow);box-shadow:0 0 0 2px rgba(255,0,0,.08);}
+.comment-input-row input::placeholder{color:var(--muted);opacity:.6;}
+.comment-send-btn{
+  font-family:var(--font-crt);font-size:1rem;letter-spacing:2px;
+  background:var(--yellow);color:var(--bg);border:none;
+  padding:.5rem 1rem;cursor:pointer;transition:all .15s;
+  white-space:nowrap;
 }
-.form-group select option{background:var(--bg2);}
-.form-group textarea{min-height:120px;}
-.form-submit{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
-.form-note{font-family:var(--font-crt);font-size:.85rem;letter-spacing:1px;color:var(--muted);}
-.form-success{
-  display:none;font-family:var(--font-crt);font-size:1rem;
-  letter-spacing:2px;color:var(--yellow);
-  border:1px solid var(--border);padding:.75rem 1rem;
-  background:rgba(255,0,0,.05);
+.comment-send-btn:hover{background:var(--white);box-shadow:3px 3px 0 var(--red);}
+.comment-send-btn:active{transform:scale(.96);}
+
+/* floating stage */
+.float-stage{
+  position:relative;width:100%;height:240px;
+  border:1px solid var(--border);background:var(--bg);
+  overflow:hidden;
+}
+.float-stage::before{
+  content:'// COMMENT STREAM //';
+  font-family:var(--font-mono);font-size:.55rem;letter-spacing:3px;
+  color:rgba(255,0,0,.07);
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;white-space:nowrap;
 }
 
-/* ─── FOOTER ─────────────────────────────────────── */
+/* individual floating comment bubble */
+.float-comment{
+  position:absolute;
+  font-family:var(--font-crt);font-size:1rem;letter-spacing:1px;
+  color:var(--yellow2);
+  background:rgba(17,0,0,.85);
+  border:1px solid var(--border);
+  padding:.3rem .75rem;
+  white-space:nowrap;
+  pointer-events:none;
+  animation:floatUp var(--dur,7s) linear forwards;
+  max-width:280px;
+  overflow:hidden;text-overflow:ellipsis;
+}
+.float-comment.new-comment{
+  color:var(--yellow);
+  border-color:var(--yellow);
+  box-shadow:0 0 10px rgba(255,0,0,.3);
+  text-shadow:0 0 6px rgba(255,0,0,.4);
+}
+@keyframes floatUp{
+  0%  {opacity:0;transform:translateY(0) translateX(var(--dx,0px));}
+  8%  {opacity:1;}
+  80% {opacity:1;}
+  100%{opacity:0;transform:translateY(-260px) translateX(calc(var(--dx,0px) * 1.3));}
+}
+
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5rem calc(var(--player-h) + 2rem);text-align:center;}
 .footer-logo{font-family:var(--font-crt);font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:clamp(4px,1.5vw,8px);color:var(--yellow);text-shadow:0 0 20px rgba(255,0,0,.4);margin-bottom:.3rem;}
 .footer-tagline{font-family:var(--font-mono);font-size:.63rem;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:1.8rem;}
@@ -493,72 +525,49 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
 .footer-nav a:hover{color:var(--yellow);}
 .footer-copy{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);opacity:.5;letter-spacing:1px;}
 
-/* ─── SCROLL ANIMATION ───────────────────────────── */
 .anim-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease,box-shadow .2s,border-color .2s;}
 
-/* ─── RESPONSIVE BREAKPOINTS ─────────────────────── */
-
-/* Tablet: ≤ 900px */
 @media(max-width:900px){
   #about .inner{grid-template-columns:1fr;gap:2.5rem;}
   .about-terminal{width:100%;max-width:100%;}
   .profile-grid{grid-template-columns:1fr;gap:2rem;max-width:520px;margin:0 auto;}
-  .contact-grid{grid-template-columns:1fr;gap:2.5rem;}
-  .form-row{grid-template-columns:1fr;}
+  .contact-static{grid-template-columns:1fr;gap:2.5rem;}
 }
 
-/* Mobile: ≤ 640px */
 @media(max-width:640px){
   :root{--nav-h:48px;--player-h:52px;}
-
-  /* Nav */
   .nav-links,.nav-status{display:none;}
   .nav-hamburger{display:flex;}
   nav{padding:0 1rem;}
   .nav-logo{font-size:1.6rem;letter-spacing:3px;}
-
-  /* Hero */
   #hero{padding:calc(var(--nav-h) + 2rem) 1rem calc(var(--player-h) + 3.5rem);}
   .hero-ascii{display:none;}
   .hero-title{letter-spacing:4px;}
   .keypad{grid-template-columns:repeat(3,40px);gap:6px;}
   .key{width:40px;height:40px;font-size:1.2rem;}
-
-  /* Music player */
   .music-player{padding:.4rem .85rem;gap:.65rem;}
   .music-progress,.music-vol{display:none;}
   .music-icon{font-size:1.2rem;}
   .music-title{font-size:.82rem;}
   .music-status{font-size:.55rem;}
   .music-btn{font-size:.9rem;padding:.12rem .4rem;}
-
-  /* Cards */
   .video-grid,.platform-grid,.itch-grid{grid-template-columns:1fr;}
-
-  /* Gallery */
   .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.5rem;}
-
-  /* Lightbox nav */
   .lightbox-prev{left:.3rem;}
   .lightbox-next{right:.3rem;}
   .lightbox-nav{font-size:1.4rem;padding:.25rem .5rem;}
   .lightbox-close{top:-38px;font-size:1.2rem;}
-
-  /* Sections */
   .sec{padding:3.5rem 1rem;}
   #gallery{padding:3.5rem 1rem;}
   #about{padding:3.5rem 1rem;}
-
-  /* Contact */
-  .form-row{grid-template-columns:1fr;}
-  .email-pill{font-size:.88rem;padding:.4rem .9rem;}
-  .form-submit{flex-direction:column;align-items:flex-start;}
-
-  /* Profile */
+  .contact-pill{font-size:.9rem;padding:.45rem .9rem;}
   .profile-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .float-stage{height:180px;}
+  .float-comment{font-size:.9rem;}
+  .comment-input-row{flex-direction:column;}
+  .comment-send-btn{align-self:flex-end;}
 }
 
-/* Small phones: ≤ 380px */
 @media(max-width:380px){
   .hero-title{font-size:3.2rem;}
   .sec-title{font-size:2.2rem;}
@@ -566,12 +575,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
 }
 
-/* Desktop hover cursor */
 @media(hover:hover){
   body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%23ff0000'/%3E%3Ccircle cx='10' cy='10' r='8' fill='none' stroke='%23ff0000' stroke-width='1'/%3E%3C/svg%3E") 10 10,crosshair;}
 }
 
-/* Safe area (iPhone notch/home bar) */
 @supports(padding:max(0px)){
   .music-player{padding-bottom:max(.45rem,env(safe-area-inset-bottom));}
   footer{padding-bottom:max(calc(var(--player-h) + 2rem),calc(var(--player-h) + env(safe-area-inset-bottom) + 1rem));}
@@ -597,7 +604,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   </button>
 </nav>
 
-<!-- Mobile drawer -->
 <div class="nav-drawer" id="navDrawer">
   <ul>
     <li><a href="#videos"    onclick="closeDrawer()">&#9654; TRAILER</a></li>
@@ -686,21 +692,21 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   <div class="sec-label">&#9654; YOUTUBE &middot; ผลงานวิดีโอ</div>
   <h2 class="sec-title">VIDEO GAME<br><span>TRAILER</span></h2>
   <div class="video-grid">
-    <div class="video-card anim-in" onclick="openModal('kIL-q1vwkz0','SHADOW SAW US — TRAILER')">
+    <div class="video-card anim-in" onclick="openModal('kIL-q1vwkz0')">
       <div class="video-thumb">
         <img src="https://img.youtube.com/vi/kIL-q1vwkz0/hqdefault.jpg" alt="Shadow Saw Us Trailer" loading="lazy"/>
         <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       </div>
       <div class="video-info"><h3>SANITY SHOOTER</h3><p>// Game Trailer</p></div>
     </div>
-    <div class="video-card anim-in" onclick="openModal('z_8z27ONrbk','THIS PART OF MINE — TRAILER')">
+    <div class="video-card anim-in" onclick="openModal('z_8z27ONrbk')">
       <div class="video-thumb">
         <img src="https://img.youtube.com/vi/z_8z27ONrbk/hqdefault.jpg" alt="This Part of Mine Trailer" loading="lazy"/>
         <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       </div>
       <div class="video-info"><h3>THIS PART OF MINE</h3><p>// Game Trailer</p></div>
     </div>
-    <div class="video-card anim-in" onclick="openModal('23TZ718wgeA','SANITY SHOOTER — TRAILER')">
+    <div class="video-card anim-in" onclick="openModal('23TZ718wgeA')">
       <div class="video-thumb">
         <img src="https://img.youtube.com/vi/23TZ718wgeA/hqdefault.jpg" alt="Sanity Shooter Trailer" loading="lazy"/>
         <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
@@ -710,7 +716,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   </div>
 </section>
 
-<!-- VIDEO MODAL -->
 <div class="modal-overlay" id="videoModal" onclick="closeModal(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal()">[ CLOSE X ]</button>
@@ -753,7 +758,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
     </a>
   </div>
 
-  <!-- ITCH.IO -->
   <div style="margin-top:3rem;">
     <div class="sec-label">&#127918; ITCH.IO &middot; ดาวน์โหลดเกม</div>
     <div class="itch-grid">
@@ -786,28 +790,28 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   <div class="sec-label">&#10022; ผลงาน</div>
   <h2 class="sec-title">ผลงาน<br><span>อื่น ๆ</span></h2>
   <div class="video-grid">
-    <div class="video-card anim-in" onclick="openModal('2WO3TOI1ujw','ANIMATION')">
+    <div class="video-card anim-in" onclick="openModal('2WO3TOI1ujw')">
       <div class="video-thumb">
         <img src="https://img.youtube.com/vi/2WO3TOI1ujw/hqdefault.jpg" alt="Animation" loading="lazy"/>
         <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       </div>
       <div class="video-info"><h3>ANIMATION</h3><p>// ผลงานอนิเมชั่น</p></div>
     </div>
-    <div class="video-card anim-in" onclick="openModal('Z0BmSlea9_w','SHADOW SAW US — OST')">
+    <div class="video-card anim-in" onclick="openModal('Z0BmSlea9_w')">
       <div class="video-thumb">
         <img src="https://img.youtube.com/vi/Z0BmSlea9_w/hqdefault.jpg" alt="Shadow Saw Us OST" loading="lazy"/>
         <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       </div>
       <div class="video-info"><h3>SHADOW SAW US</h3><p>// เพลงประกอบ OST</p></div>
     </div>
-    <div class="video-card anim-in" onclick="openModal('9lTRHb_2ew8','SANITY SHOOTER — OST')">
+    <div class="video-card anim-in" onclick="openModal('9lTRHb_2ew8')">
       <div class="video-thumb">
         <img src="https://img.youtube.com/vi/9lTRHb_2ew8/hqdefault.jpg" alt="Sanity Shooter OST" loading="lazy"/>
         <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       </div>
       <div class="video-info"><h3>SANITY SHOOTER</h3><p>// เพลง Sanity Shooter</p></div>
     </div>
-    <div class="video-card anim-in" onclick="openModal('FWrGu9cLh9w','GAME KNOWLEDGE')">
+    <div class="video-card anim-in" onclick="openModal('FWrGu9cLh9w')">
       <div class="video-thumb">
         <img src="https://img.youtube.com/vi/FWrGu9cLh9w/hqdefault.jpg" alt="Game Knowledge" loading="lazy"/>
         <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
@@ -829,7 +833,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   </div>
 </div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <div class="lightbox-inner">
     <button class="lightbox-close" onclick="closeLightbox()">[ CLOSE X ]</button>
@@ -878,47 +881,43 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
 
 <div class="divider"></div>
 
-<!-- ========== CONTACT ========== -->
+<!-- ========== CONTACT — NEW ========== -->
 <section id="contact" class="sec">
-  <div class="contact-grid">
-    <div class="contact-info">
+  <div class="contact-static">
+
+    <!-- Left: contact info only -->
+    <div class="contact-info-block">
       <div class="sec-label">&#9742; CONTACT</div>
       <h2 class="sec-title">ติดต่อ<br><span>เรา</span></h2>
       <p>มีโปรเจกต์ที่อยากทำร่วมกัน<br>หรืออยากสอบถามเรื่องผลงาน<br>ยินดีรับฟังทุกเรื่องเลย!</p>
-      <a href="mailto:realsawie2549@gmail.com" class="email-pill">&#9742; realsawie2549@gmail.com</a>
+      <div class="contact-links">
+        <a href="mailto:realsawie2549@gmail.com" class="contact-pill">
+          <span class="pill-icon">&#9993;</span>
+          realsawie2549@gmail.com
+        </a>
+        <a href="tel:0958309662" class="contact-pill">
+          <span class="pill-icon">&#9742;</span>
+          095-830-9662
+        </a>
+      </div>
     </div>
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label>อีเมลของคุณ</label>
-          <input type="email" placeholder="you@email.com" required autocomplete="email"/>
-        </div>
-        <div class="form-group">
-          <label>หัวข้อ</label>
-          <input type="text" placeholder="ชื่อหัวข้อ" required/>
-        </div>
+
+    <!-- Right: floating comment system -->
+    <div class="comments-panel anim-in">
+      <div class="comments-panel-header">
+        <div class="dot-blink"></div>
+        COMMENT STREAM
       </div>
-      <div class="form-group">
-        <label>ต้องการติดต่อเรื่องอะไร</label>
-        <select required>
-          <option value="" disabled selected>-- เลือกหมวดหมู่ --</option>
-          <option>COLLABORATION / ร่วมงาน</option>
-          <option>COMMISSION / จ้างงาน</option>
-          <option>FEEDBACK / คำติชม</option>
-          <option>สอบถามทั่วไป</option>
-          <option>อื่น ๆ</option>
-        </select>
+
+      <div class="comment-input-row">
+        <input type="text" id="commentInput" maxlength="60" placeholder="// พิมพ์ความคิดเห็นแล้วกด ENTER..." autocomplete="off"/>
+        <button class="comment-send-btn" onclick="sendComment()">[ SEND ]</button>
       </div>
-      <div class="form-group">
-        <label>รายละเอียด</label>
-        <textarea placeholder="// เขียนรายละเอียดที่นี่..."></textarea>
-      </div>
-      <div class="form-submit">
-        <span class="form-note">&#8594; ส่งไปที่ realsawie2549@gmail.com</span>
-        <button type="submit" class="btn btn-primary">[ SEND ]</button>
-      </div>
-      <div class="form-success" id="formSuccess">&#9654; ส่งข้อความสำเร็จ! จะตอบกลับเร็ว ๆ นี้_</div>
-    </form>
+
+      <!-- floating stage -->
+      <div class="float-stage" id="floatStage"></div>
+    </div>
+
   </div>
 </section>
 
@@ -974,7 +973,6 @@ function closeDrawer(){
   document.getElementById('hamburger').classList.remove('open');
   document.getElementById('navDrawer').classList.remove('open');
 }
-// Close drawer on outside click
 document.addEventListener('click',function(e){
   var h=document.getElementById('hamburger');
   var d=document.getElementById('navDrawer');
@@ -1001,17 +999,6 @@ document.addEventListener('keydown',function(e){
 });
 
 /* ═══════════════════════════════════════════
-   CONTACT FORM
-═══════════════════════════════════════════ */
-function handleSubmit(e){
-  e.preventDefault();
-  var s=document.getElementById('formSuccess');
-  s.style.display='block';
-  e.target.reset();
-  setTimeout(function(){s.style.display='none';},5000);
-}
-
-/* ═══════════════════════════════════════════
    SCROLL ANIMATIONS
 ═══════════════════════════════════════════ */
 var obs=new IntersectionObserver(function(entries){
@@ -1023,7 +1010,6 @@ var obs=new IntersectionObserver(function(entries){
     }
   });
 },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-
 document.querySelectorAll('.anim-in').forEach(function(el){obs.observe(el);});
 
 /* ═══════════════════════════════════════════
@@ -1059,7 +1045,7 @@ function loadTrack(idx){
 function playTrack(){
   audio.play().then(function(){
     isPlaying=true;
-    document.getElementById('playPauseBtn').textContent='\u258C\u258C'; // ▐▐
+    document.getElementById('playPauseBtn').textContent='\u258C\u258C';
     document.getElementById('musicDisc').classList.remove('paused');
     document.getElementById('musicStatus').textContent='// PLAYING \u25B6';
   }).catch(function(){
@@ -1090,7 +1076,6 @@ audio.addEventListener('timeupdate',function(){
 });
 audio.addEventListener('ended',function(){nextTrack();playTrack();});
 loadTrack(0);
-// Auto-play on first user interaction
 document.addEventListener('pointerdown',function startAudio(){
   if(!isPlaying)playTrack();
   document.removeEventListener('pointerdown',startAudio);
@@ -1145,7 +1130,6 @@ function lightboxNav(dir){
   document.getElementById('lightboxImg').src=photos[currentPhoto].src;
 }
 
-// Swipe support for lightbox
 (function(){
   var sx=0;
   document.getElementById('lightbox').addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
@@ -1156,6 +1140,88 @@ function lightboxNav(dir){
 })();
 
 buildGallery();
+
+/* ═══════════════════════════════════════════
+   FLOATING COMMENT SYSTEM
+═══════════════════════════════════════════ */
+var demoComments=[
+  'เกมเพิ่ว!! ♥',
+  'Shadow Saw Us ดีมากก',
+  'ชอบ aesthetic มากเลย',
+  'This Part of Mine เนื้อเรื่องดี',
+  'รอภาคต่ออยู่นะ!!',
+  'pixel art สวยมาก',
+  'OST ติดหูสุดๆ',
+  'เป็นแฟนผลงานตลอดไป',
+  'Sanity Shooter FPS แจ่มมาก',
+  'อนิเมชั่นน่ารักเว่อร์',
+  'ซัพพอร์ตเต็มที่!!',
+  'เกมดีมีคุณภาพ',
+  'เพลงประกอบเพิ่ว~',
+  '10/10 ทุกผลงาน',
+  'รอผลงานใหม่อยู่!!',
+];
+
+var stage = document.getElementById('floatStage');
+var activeCount = 0;
+
+function spawnComment(text, isNew) {
+  if (!stage) return;
+  var stageW = stage.offsetWidth;
+  var stageH = stage.offsetHeight;
+
+  var el = document.createElement('div');
+  el.className = 'float-comment' + (isNew ? ' new-comment' : '');
+  el.textContent = text;
+
+  // random horizontal position, keeping bubble mostly inside
+  var maxLeft = Math.max(stageW - 300, 10);
+  var left = Math.floor(Math.random() * maxLeft);
+  var dx = (Math.random() - 0.5) * 30;
+  var dur = 6 + Math.random() * 4; // 6–10s
+
+  el.style.setProperty('--dx', dx + 'px');
+  el.style.setProperty('--dur', dur + 's');
+  el.style.left = left + 'px';
+  el.style.bottom = '0px';
+
+  stage.appendChild(el);
+  activeCount++;
+
+  // remove after animation ends
+  setTimeout(function() {
+    if (el.parentNode) el.parentNode.removeChild(el);
+    activeCount--;
+  }, dur * 1000 + 100);
+}
+
+// Periodically spawn demo comments
+function spawnRandomDemo() {
+  if (activeCount < 8) {
+    var txt = demoComments[Math.floor(Math.random() * demoComments.length)];
+    spawnComment(txt, false);
+  }
+  var nextDelay = 1400 + Math.random() * 2200;
+  setTimeout(spawnRandomDemo, nextDelay);
+}
+
+// start after short delay
+setTimeout(spawnRandomDemo, 800);
+
+function sendComment() {
+  var input = document.getElementById('commentInput');
+  var text = input.value.trim();
+  if (!text) return;
+
+  spawnComment(text, true);
+  input.value = '';
+  input.focus();
+}
+
+// Enter key support
+document.getElementById('commentInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') sendComment();
+});
 </script>
 </body>
 </html>
