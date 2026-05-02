@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sawie Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Thai:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:       #0d0000;
+  --bg2:      #110000;
+  --bg3:      #1a0000;
+  --yellow:   #ff0000;
+  --yellow2:  #ff7676;
+  --red:      #ff2244;
+  --white:    #f5f5e8;
+  --muted:    rgb(122, 64, 64);
+  --border:   rgba(255, 0, 0, 0.22);
+  --font-crt: 'VT323', monospace;
+  --font-mono:'Courier Prime', monospace;
+  --font-body:'Noto Sans Thai', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:var(--font-body);
+  line-height:1.6;
+  overflow-x:hidden;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%23e8ff00'/%3E%3Ccircle cx='10' cy='10' r='8' fill='none' stroke='%23e8ff00' stroke-width='1'/%3E%3C/svg%3E") 10 10, crosshair;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,0.13) 0px,rgba(0,0,0,0.13) 1px,transparent 1px,transparent 3px);
+  pointer-events:none;z-index:998;
+}
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background:rgba(255, 0, 0, 0.015);
+  pointer-events:none;z-index:997;
+  animation:flicker 6s step-start infinite;
+}
+@keyframes flicker{0%,95%,100%{opacity:1;}96%{opacity:0.6;}97%{opacity:1;}98%{opacity:0.7;}99%{opacity:1;}}
+
+/* NAVBAR */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:52px;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 0 20px rgba(255, 0, 0, 0.08);
+}
+.nav-logo{
+  font-family:var(--font-crt);font-size:1.9rem;
+  color:var(--yellow);text-decoration:none;
+  letter-spacing:4px;text-shadow:0 0 12px var(--yellow);
+  animation:blink-logo 4s step-start infinite;
+}
+@keyframes blink-logo{0%,94%,96%,100%{text-shadow:0 0 12px var(--yellow);}95%{text-shadow:none;}}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{
+  font-family:var(--font-mono);font-size:0.72rem;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  transition:color .2s,text-shadow .2s;
+}
+.nav-links a:hover{color:var(--yellow);text-shadow:0 0 8px var(--yellow);}
+.nav-status{
+  font-family:var(--font-crt);font-size:1rem;
+  color:var(--yellow);letter-spacing:2px;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.dot-blink{
+  width:8px;height:8px;background:var(--yellow);
+  border-radius:50%;animation:dotblink 1.2s step-start infinite;
+  box-shadow:0 0 6px var(--yellow);
+}
+@keyframes dotblink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+
+/* MUSIC PLAYER */
+.music-player{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:0.5rem 2rem;display:flex;align-items:center;gap:1.2rem;
+  box-shadow:0 -4px 20px rgba(255,0,0,0.1);
+}
+.music-icon{font-family:var(--font-crt);font-size:1.4rem;color:var(--yellow);animation:spin-slow 4s linear infinite;display:inline-block;}
+@keyframes spin-slow{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.music-icon.paused{animation-play-state:paused;}
+.music-info{flex:1;min-width:0;}
+.music-title{font-family:var(--font-crt);font-size:1rem;letter-spacing:2px;color:var(--yellow2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.music-status{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+.music-controls{display:flex;align-items:center;gap:0.7rem;}
+.music-btn{
+  font-family:var(--font-crt);font-size:1.1rem;
+  background:transparent;border:1px solid var(--border);
+  color:var(--yellow);padding:0.2rem 0.6rem;cursor:pointer;
+  transition:all .15s;letter-spacing:1px;
+}
+.music-btn:hover{background:var(--yellow);color:var(--bg);border-color:var(--yellow);}
+.music-progress{
+  flex:1;max-width:200px;height:3px;
+  background:var(--bg3);border:1px solid var(--border);
+  cursor:pointer;position:relative;
+}
+.music-progress-bar{height:100%;background:var(--yellow);width:0%;transition:width 0.5s linear;}
+.music-vol{display:flex;align-items:center;gap:0.4rem;}
+.music-vol label{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:1px;}
+.music-vol input[type=range]{width:70px;accent-color:var(--yellow);cursor:pointer;}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:8rem 2rem 6rem;
+  position:relative;overflow:hidden;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255, 0, 0, 0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255, 0, 0, 0.04) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;
+}
+.hero-ascii{
+  font-family:var(--font-crt);font-size:clamp(0.55rem,1.2vw,0.85rem);
+  line-height:1.25;color:rgba(255, 0, 0, 0.1);
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);white-space:pre;
+  pointer-events:none;letter-spacing:2px;user-select:none;
+}
+.hero-eyebrow{
+  font-family:var(--font-mono);font-size:0.7rem;
+  letter-spacing:5px;text-transform:uppercase;
+  color:var(--yellow);border:1px solid var(--border);
+  padding:0.3rem 1rem;margin-bottom:1.8rem;display:inline-block;
+  animation:fadeUp .6s ease both;box-shadow:0 0 12px rgba(255, 0, 0, 0.1);
+}
+.hero-title{
+  font-family:var(--font-crt);
+  font-size:clamp(4.5rem,14vw,11rem);
+  letter-spacing:8px;line-height:0.88;
+  color:var(--yellow);
+  text-shadow:0 0 40px rgba(255, 0, 0, 0.5),3px 3px 0 rgba(255,34,68,0.4),-1px -1px 0 rgba(0,200,255,0.2);
+  animation:fadeUp .6s .1s ease both,glitch 8s step-start infinite;
+}
+@keyframes glitch{
+  0%,92%,100%{text-shadow:0 0 40px rgba(255, 0, 0, 0.5),3px 3px 0 rgba(255,34,68,0.4),-1px -1px 0 rgba(0,200,255,0.2);transform:none;}
+  93%{transform:translate(-3px,0);text-shadow:-3px 0 var(--red),3px 0 #00ccff;}
+  94%{transform:translate(3px,0);text-shadow:3px 0 var(--red),-3px 0 #00ccff;}
+  95%{transform:none;text-shadow:0 0 40px rgba(255, 0, 0, 0.5);}
+}
+.hero-sub{
+  margin-top:1.2rem;font-family:var(--font-mono);font-size:0.85rem;
+  color:var(--muted);letter-spacing:2px;max-width:460px;
+  animation:fadeUp .6s .2s ease both;
+}
+.hero-sub em{color:var(--yellow2);font-style:normal;}
+.hero-cta{margin-top:2.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s .3s ease both;}
+.keypad{margin-top:3.5rem;display:grid;grid-template-columns:repeat(3,44px);gap:8px;animation:fadeUp .6s .4s ease both;}
+.key{
+  width:44px;height:44px;background:var(--bg3);
+  border:1px solid var(--border);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  font-family:var(--font-crt);font-size:1.3rem;
+  color:var(--yellow2);cursor:default;
+  transition:all .1s;user-select:none;
+}
+.key sub{font-size:0.45rem;letter-spacing:1px;color:var(--muted);font-family:var(--font-mono);line-height:1;text-transform:uppercase;}
+.key:hover{background:var(--yellow);color:var(--bg);box-shadow:0 0 16px rgba(255, 0, 0, 0.5);}
+.key:hover sub{color:var(--bg);}
+.key:active{transform:scale(0.9);}
+.scroll-hint{position:absolute;bottom:4rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:fadeUp 1s .7s ease both;}
+.scroll-hint span{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--yellow),transparent);animation:scrollAnim 1.6s ease-in-out infinite;}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top;opacity:1;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* SHARED */
+.sec{padding:5.5rem 2rem;max-width:1200px;margin:0 auto;}
+.sec-label{font-family:var(--font-crt);font-size:1rem;letter-spacing:5px;text-transform:uppercase;color:var(--yellow);margin-bottom:0.2rem;}
+.sec-title{font-family:var(--font-crt);font-size:clamp(2.8rem,7vw,5.5rem);letter-spacing:4px;line-height:0.95;color:var(--white);margin-bottom:2.5rem;}
+.sec-title span{color:var(--yellow);}
+.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);}
+
+/* BUTTONS */
+.btn{font-family:var(--font-crt);font-size:1.2rem;letter-spacing:3px;text-transform:uppercase;padding:0.6rem 2rem;cursor:pointer;text-decoration:none;transition:all .15s;border:none;display:inline-block;}
+.btn-primary{background:var(--yellow);color:var(--bg);box-shadow:4px 4px 0 rgba(255, 0, 0, 0.3);}
+.btn-primary:hover{background:var(--white);box-shadow:0 0 20px rgba(255, 0, 0, 0.5),4px 4px 0 var(--red);transform:translate(-2px,-2px);}
+.btn-outline{background:transparent;color:var(--yellow);border:1px solid var(--yellow);box-shadow:3px 3px 0 var(--red);}
+.btn-outline:hover{background:var(--yellow);color:var(--bg);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red);}
+
+/* VIDEO */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem;}
+.video-card{
+  background:var(--bg2);border:1px solid var(--border);
+  cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;
+  position:relative;overflow:hidden;
+}
+.video-card::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,0.08) 0px,rgba(0,0,0,0.08) 1px,transparent 1px,transparent 3px);
+  pointer-events:none;z-index:2;
+}
+.video-card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--yellow);border-color:var(--yellow);}
+.video-thumb{position:relative;width:100%;padding-top:56.25%;background:var(--bg3);overflow:hidden;}
+.video-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(0.2) saturate(0.8) brightness(0.85);transition:filter .3s;}
+.video-card:hover .video-thumb img{filter:sepia(0) saturate(1.1) brightness(1);}
+.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,13,0,0.45);z-index:3;transition:background .2s;}
+.video-card:hover .play-overlay{background:rgba(13,13,0,0.2);}
+.play-btn{
+  width:56px;height:56px;background:var(--yellow);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:3px 3px 0 var(--red);
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);
+}
+.video-card:hover .play-btn{transform:scale(1.1);box-shadow:5px 5px 0 var(--red);}
+.play-btn svg{margin-left:5px;}
+.video-info{padding:0.9rem 1.1rem 1.1rem;position:relative;z-index:2;}
+.video-info h3{font-family:var(--font-crt);font-size:1.3rem;letter-spacing:2px;color:var(--yellow2);margin-bottom:0.2rem;}
+.video-info p{font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);letter-spacing:1px;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:500;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.active{display:flex;}
+.modal-content{position:relative;width:100%;max-width:880px;background:var(--bg2);border:1px solid var(--yellow);box-shadow:0 0 60px rgba(232,255,0,0.2),6px 6px 0 var(--red);}
+.modal-close{position:absolute;top:-38px;right:0;font-family:var(--font-crt);font-size:1.6rem;letter-spacing:2px;background:none;border:none;color:var(--yellow);cursor:pointer;transition:color .2s;}
+.modal-close:hover{color:var(--red);}
+.modal-video{width:100%;padding-top:56.25%;position:relative;}
+.modal-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+
+/* PLATFORMS */
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;}
+.platform-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:1.8rem 1.5rem;display:flex;flex-direction:column;gap:0.7rem;
+  text-decoration:none;color:var(--white);transition:all .2s;position:relative;overflow:hidden;
+}
+.platform-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.platform-card:hover::after{transform:scaleX(1);}
+.platform-card:hover{border-color:var(--yellow);box-shadow:4px 4px 0 rgba(255, 0, 0, 0.25);transform:translate(-2px,-2px);}
+.platform-icon{font-size:2.2rem;}
+.platform-card h3{font-family:var(--font-crt);font-size:1.6rem;letter-spacing:3px;color:var(--yellow2);}
+.platform-card p{font-family:var(--font-mono);font-size:0.78rem;color:var(--muted);letter-spacing:1px;}
+.platform-tag{font-family:var(--font-crt);font-size:0.9rem;letter-spacing:2px;color:var(--yellow);border:1px solid var(--border);padding:0.1rem 0.5rem;width:fit-content;}
+
+/* ITCHIO */
+.itch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.itch-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:1.8rem 1.5rem;display:flex;flex-direction:column;gap:0.7rem;
+  text-decoration:none;color:var(--white);transition:all .2s;position:relative;overflow:hidden;
+}
+.itch-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.itch-card:hover::after{transform:scaleX(1);}
+.itch-card:hover{border-color:var(--yellow);box-shadow:4px 4px 0 rgba(255, 0, 0, 0.25);transform:translate(-2px,-2px);}
+.itch-card .platform-icon{font-size:2rem;}
+.itch-card h3{font-family:var(--font-crt);font-size:1.3rem;letter-spacing:2px;color:var(--yellow2);}
+.itch-card p{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);letter-spacing:1px;line-height:1.6;}
+.itch-tag{font-family:var(--font-crt);font-size:0.85rem;letter-spacing:2px;color:var(--yellow);border:1px solid var(--border);padding:0.1rem 0.5rem;width:fit-content;}
+
+/* WORKS — VIDEO WORKS */
+.works-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem;}
+
+/* GALLERY */
+#gallery{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5.5rem 2rem;}
+#gallery .inner{max-width:1200px;margin:0 auto;}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.8rem;margin-top:1rem;}
+.gallery-item{
+  position:relative;overflow:hidden;cursor:pointer;
+  background:var(--bg3);border:1px solid var(--border);
+  aspect-ratio:1;transition:all .2s;
+}
+.gallery-item:hover{border-color:var(--yellow);box-shadow:4px 4px 0 var(--red);transform:translate(-2px,-2px);}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(0.15) saturate(0.85) brightness(0.85);transition:filter .3s;}
+.gallery-item:hover img{filter:sepia(0) saturate(1.1) brightness(1);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(13,0,0,0.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.gallery-item:hover .gallery-overlay{opacity:1;}
+.gallery-overlay span{font-family:var(--font-crt);font-size:1.2rem;color:var(--yellow);letter-spacing:2px;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:600;align-items:center;justify-content:center;padding:2rem;}
+.lightbox.active{display:flex;}
+.lightbox-inner{position:relative;max-width:90vw;max-height:90vh;}
+.lightbox-inner img{max-width:100%;max-height:90vh;object-fit:contain;border:1px solid var(--border);box-shadow:6px 6px 0 var(--red);}
+.lightbox-close{position:absolute;top:-40px;right:0;font-family:var(--font-crt);font-size:1.5rem;background:none;border:none;color:var(--yellow);cursor:pointer;}
+.lightbox-close:hover{color:var(--red);}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--font-crt);font-size:2rem;background:rgba(13,0,0,0.7);border:1px solid var(--border);color:var(--yellow);cursor:pointer;padding:0.3rem 0.7rem;transition:all .15s;}
+.lightbox-prev{left:-3.5rem;}
+.lightbox-next{right:-3.5rem;}
+.lightbox-nav:hover{background:var(--yellow);color:var(--bg);}
+
+/* ABOUT */
+#about{background:var(--bg2);padding:5.5rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+#about .inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:5rem;align-items:center;}
+.about-terminal{background:var(--bg);border:1px solid var(--yellow);width:360px;box-shadow:6px 6px 0 rgba(255, 0, 0, 0.25);flex-shrink:0;}
+.terminal-bar{background:var(--yellow);padding:0.4rem 0.8rem;display:flex;align-items:center;justify-content:space-between;}
+.terminal-bar span{font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--bg);letter-spacing:1px;text-transform:uppercase;}
+.terminal-dots{display:flex;gap:5px;}
+.terminal-dots i{width:10px;height:10px;border-radius:50%;background:var(--bg);opacity:0.4;}
+.terminal-body{padding:1.4rem 1.2rem;font-family:var(--font-crt);font-size:1.05rem;letter-spacing:1px;line-height:1.7;color:var(--yellow);min-height:220px;}
+.terminal-body .prompt{color:var(--red);}
+.terminal-body .comment{color:var(--muted);}
+.terminal-body .value{color:var(--yellow2);}
+.cursor-blink{display:inline-block;width:10px;height:1.1em;background:var(--yellow);vertical-align:text-bottom;animation:cur 0.9s step-start infinite;}
+@keyframes cur{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+.about-text .sec-title{margin-bottom:1rem;}
+.about-text p{color:var(--muted);font-size:0.92rem;line-height:1.9;margin-bottom:0.8rem;}
+.about-text p strong{color:var(--yellow2);}
+.about-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.4rem;}
+.about-tag{font-family:var(--font-crt);font-size:1rem;letter-spacing:2px;padding:0.2rem 0.7rem;border:1px solid var(--border);color:var(--yellow);}
+
+/* CONTACT */
+#contact{padding:5.5rem 2rem;max-width:1200px;margin:0 auto;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
+.contact-info .sec-title{margin-bottom:1rem;}
+.contact-info p{color:var(--muted);font-size:0.88rem;font-family:var(--font-mono);letter-spacing:1px;line-height:1.8;margin-bottom:1.5rem;}
+.email-pill{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-crt);font-size:1.1rem;letter-spacing:2px;color:var(--yellow);background:var(--bg2);border:1px solid var(--yellow);padding:0.5rem 1.2rem;text-decoration:none;box-shadow:3px 3px 0 rgba(255, 0, 0, 0.2);transition:all .15s;}
+.email-pill:hover{background:var(--yellow);color:var(--bg);box-shadow:5px 5px 0 var(--red);transform:translate(-2px,-2px);}
+.contact-form{display:flex;flex-direction:column;gap:1.1rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:0.35rem;}
+.form-group label{font-family:var(--font-crt);font-size:0.95rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);}
+.form-group input,.form-group select,.form-group textarea{background:var(--bg2);border:1px solid var(--border);color:var(--white);font-family:var(--font-mono);font-size:0.88rem;letter-spacing:1px;padding:0.7rem 0.9rem;outline:none;resize:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--yellow);box-shadow:0 0 0 2px rgba(255, 0, 0, 0.1),3px 3px 0 var(--yellow);}
+.form-group select option{background:var(--bg2);}
+.form-group textarea{min-height:130px;}
+.form-submit{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.form-note{font-family:var(--font-crt);font-size:0.9rem;letter-spacing:1px;color:var(--muted);}
+.form-success{display:none;font-family:var(--font-crt);font-size:1.1rem;letter-spacing:2px;color:var(--yellow);border:1px solid var(--border);padding:0.8rem 1rem;background:rgba(255, 0, 0, 0.05);}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2rem 5rem;text-align:center;}
+.footer-logo{font-family:var(--font-crt);font-size:2.8rem;letter-spacing:8px;color:var(--yellow);text-shadow:0 0 20px rgba(255, 0, 0, 0.4);margin-bottom:0.3rem;}
+.footer-tagline{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:1.8rem;}
+.footer-nav{display:flex;justify-content:center;gap:2rem;list-style:none;flex-wrap:wrap;margin-bottom:2rem;}
+.footer-nav a{font-family:var(--font-crt);font-size:1rem;letter-spacing:2px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-nav a:hover{color:var(--yellow);}
+.footer-copy{font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);opacity:.5;letter-spacing:1px;}
+
+@media(max-width:768px){
+  nav{padding:0 1rem;}
+  .nav-links,.nav-status{display:none;}
+  #about .inner{grid-template-columns:1fr;gap:2rem;}
+  .about-terminal{width:100%;max-width:100%;}
+  .contact-grid{grid-template-columns:1fr;gap:2rem;}
+  .form-row{grid-template-columns:1fr;}
+  .music-player{padding:0.5rem 1rem;gap:0.7rem;}
+  .music-progress{display:none;}
+  .lightbox-prev{left:-2rem;}
+  .lightbox-next{right:-2rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">SAWIE&#9742;</a>
+  <ul class="nav-links">
+    <li><a href="#videos">TRAILER</a></li>
+    <li><a href="#platforms">ช่องทาง</a></li>
+    <li><a href="#works">WORKS</a></li>
+    <li><a href="#gallery">GALLERY</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <div class="nav-status"><div class="dot-blink"></div> ONLINE</div>
+</nav>
+
+<!-- ========== MUSIC PLAYER ========== -->
+<div class="music-player" id="musicPlayer">
+  <div class="music-icon" id="musicDisc">♫</div>
+  <div class="music-info">
+    <div class="music-title" id="musicTitle">LOADING...</div>
+    <div class="music-status" id="musicStatus">// BGM AUTO-PLAY</div>
+  </div>
+  <div class="music-controls">
+    <button class="music-btn" onclick="prevTrack()">◀◀</button>
+    <button class="music-btn" id="playPauseBtn" onclick="togglePlay()">▐▐</button>
+    <button class="music-btn" onclick="nextTrack()">▶▶</button>
+  </div>
+  <div class="music-progress" id="progressBar" onclick="seekAudio(event)">
+    <div class="music-progress-bar" id="progressFill"></div>
+  </div>
+  <div class="music-vol">
+    <label>VOL</label>
+    <input type="range" min="0" max="1" step="0.05" value="0.4" oninput="setVolume(this.value)"/>
+  </div>
+</div>
+
+<audio id="bgmAudio" preload="auto"></audio>
+
+<section id="hero">
+  <div class="hero-grid"></div>
+  <pre class="hero-ascii">
+  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+  &#9474;  &#9484;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9488;  &#9474;
+  &#9474;  &#9474; 1 &#9474; 2 &#9474; 3 &#9474;  &#9474;
+  &#9474;  &#9474;   &#9474;ABC&#9474;DEF&#9474;  &#9474;
+  &#9474;  &#9500;&#9472;&#9472;&#9472;&#9532;&#9472;&#9472;&#9472;&#9532;&#9472;&#9472;&#9472;&#9508;  &#9474;
+  &#9474;  &#9474; 4 &#9474; 5 &#9474; 6 &#9474;  &#9474;
+  &#9474;  &#9474;GHI&#9474;JKL&#9474;MNO&#9474;  &#9474;
+  &#9474;  &#9500;&#9472;&#9472;&#9472;&#9532;&#9472;&#9472;&#9472;&#9532;&#9472;&#9472;&#9472;&#9508;  &#9474;
+  &#9474;  &#9474; 7 &#9474; 8 &#9474; 9 &#9474;  &#9474;
+  &#9474;  &#9474;PRS&#9474;TUV&#9474;WXY&#9474;  &#9474;
+  &#9474;  &#9500;&#9472;&#9472;&#9472;&#9532;&#9472;&#9472;&#9472;&#9532;&#9472;&#9472;&#9472;&#9508;  &#9474;
+  &#9474;  &#9474; * &#9474; 0 &#9474; # &#9474;  &#9474;
+  &#9474;  &#9492;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9496;  &#9474;
+  &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+  </pre>
+
+  <div class="hero-eyebrow">&#9654; Portfolio &amp; Collection</div>
+  <h1 class="hero-title">SAWIE<br>COLLECTION</h1>
+  <p class="hero-sub">&#9135;&#9135;&#9135; รวมผลงานทุกชิ้น &#9135;&#9135;&#9135;<br><em>เกม &middot; อนิเมชั่น &middot; การ์ตูน</em><br>ไว้ในที่เดียว</p>
+
+  <div class="hero-cta">
+    <a href="#videos" class="btn btn-primary">&#9654; ดูผลงาน</a>
+    <a href="#contact" class="btn btn-outline">&#9742; ติดต่อ</a>
+  </div>
+
+  <div class="keypad">
+    <div class="key">1<sub>&nbsp;</sub></div>
+    <div class="key">2<sub>ABC</sub></div>
+    <div class="key">3<sub>DEF</sub></div>
+    <div class="key">4<sub>GHI</sub></div>
+    <div class="key">5<sub>JKL</sub></div>
+    <div class="key">6<sub>MNO</sub></div>
+    <div class="key">7<sub>PRS</sub></div>
+    <div class="key">8<sub>TUV</sub></div>
+    <div class="key">9<sub>WXY</sub></div>
+    <div class="key">*</div>
+    <div class="key">0</div>
+    <div class="key">#</div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== VIDEO TRAILERS ========== -->
+<section class="sec" id="videos">
+  <div class="sec-label">&#9654; YOUTUBE &middot; ผลงานวิดีโอ</div>
+  <h2 class="sec-title">VIDEO GAME<br><span>TRAILER</span></h2>
+  <div class="video-grid">
+
+    <div class="video-card" onclick="openModal('kIL-q1vwkz0','SHADOW SAW US — TRAILER')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/kIL-q1vwkz0/hqdefault.jpg" alt="Shadow Saw Us Trailer"/>
+        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d00"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="video-info"><h3>SANITY SHOOTER</h3><p>// Game Trailer</p></div>
+    </div>
+
+    <div class="video-card" onclick="openModal('z_8z27ONrbk','THIS PART OF MINE — TRAILER')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/z_8z27ONrbk/hqdefault.jpg" alt="This Part of Mine Trailer"/>
+        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d00"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="video-info"><h3>THIS PART OF MINE</h3><p>// Game Trailer</p></div>
+    </div>
+
+    <div class="video-card" onclick="openModal('23TZ718wgeA','SANITY SHOOTER — TRAILER')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/23TZ718wgeA/hqdefault.jpg" alt="Sanity Shooter Trailer"/>
+        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d00"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="video-info"><h3>SHADOW SAW US</h3><p>// Game Trailer</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="modal-overlay" id="videoModal" onclick="closeModal(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">[ CLOSE X ]</button>
+    <div class="modal-video">
+      <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ========== PLATFORMS ========== -->
+<section class="sec" id="platforms">
+  <div class="sec-label">&#9742; CHANNELS</div>
+  <h2 class="sec-title">ช่องทาง<br><span>ต่าง ๆ</span></h2>
+  <div class="platform-grid">
+
+    <a href="https://www.youtube.com/@nungu5406" target="_blank" rel="noopener" class="platform-card">
+      <div class="platform-icon">&#9654;&#65039;</div>
+      <h3>YOUTUBE</h3>
+      <p>คลิปเกมเพลย์ &middot; ผลงาน &middot; วิดีโอต่าง ๆ</p>
+      <span class="platform-tag">@NUNGU5406</span>
+    </a>
+
+    <a href="https://www.tiktok.com/@sawiecollection" target="_blank" rel="noopener" class="platform-card">
+      <div class="platform-icon">&#127925;</div>
+      <h3>TIKTOK</h3>
+      <p>คลิปสั้น ไฮไลท์ และมีมสุดฮา</p>
+      <span class="platform-tag">@SAWIECOLLECTION</span>
+    </a>
+
+    <a href="https://discord.gg/mTnGaDhHMD" target="_blank" rel="noopener" class="platform-card">
+      <div class="platform-icon">&#128172;</div>
+      <h3>DISCORD</h3>
+      <p>คอมมูนิตี้ ชวนเล่นเกมด้วยกัน</p>
+      <span class="platform-tag">COMMUNITY</span>
+    </a>
+
+    <a href="https://web.facebook.com/profile.php?id=61572930213137" target="_blank" rel="noopener" class="platform-card">
+      <div class="platform-icon">&#128100;</div>
+      <h3>FACEBOOK</h3>
+      <p>ข่าวสาร อัปเดตผลงาน และโพสต์ต่าง ๆ</p>
+      <span class="platform-tag">SAWIE COLLECTION</span>
+    </a>
+
+  </div>
+
+  <!-- ITCH.IO GAMES -->
+  <div style="margin-top:3rem;">
+    <div class="sec-label">&#127918; ITCH.IO &middot; ดาวน์โหลดเกม</div>
+    <div class="itch-grid">
+
+      <a href="https://sawienoowie.itch.io/shadow-saw-us" target="_blank" rel="noopener" class="itch-card">
+        <div class="platform-icon">&#128123;</div>
+        <h3>SHADOW SAW US</h3>
+        <p>Indie Horror Fantasy</p>
+        <span class="itch-tag">&#9654; PLAY ON ITCH.IO</span>
+      </a>
+
+      <a href="https://sawienoowie.itch.io/this-part-of-mine" target="_blank" rel="noopener" class="itch-card">
+        <div class="platform-icon">&#10024;</div>
+        <h3>THIS PART OF MINE</h3>
+        <p>DETECTIVE GAME</p>
+        <span class="itch-tag">&#9654; PLAY ON ITCH.IO</span>
+      </a>
+
+      <a href="https://sawienoowie.itch.io/sanity-shooter-ring-dimension" target="_blank" rel="noopener" class="itch-card">
+        <div class="platform-icon">&#128302;</div>
+        <h3>SANITY SHOOTER</h3>
+        <p>FIRST PERSON SHOOTING, SCI-FI, FANTASY</p>
+        <span class="itch-tag">&#9654; PLAY ON ITCH.IO</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== WORKS — VIDEO ========== -->
+<section class="sec" id="works">
+  <div class="sec-label">&#10022; ผลงาน</div>
+  <h2 class="sec-title">ผลงาน<br><span>อื่น ๆ</span></h2>
+  <div class="video-grid">
+
+    <div class="video-card" onclick="openModal('2WO3TOI1ujw','ANIMATION')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/2WO3TOI1ujw/hqdefault.jpg" alt="Animation"/>
+        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d00"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="video-info"><h3>ANIMATION</h3><p>// ผลงานอนิเมชั่น</p></div>
+    </div>
+
+    <div class="video-card" onclick="openModal('Z0BmSlea9_w','SHADOW SAW US — OST')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/Z0BmSlea9_w/hqdefault.jpg" alt="Shadow Saw Us OST"/>
+        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d00"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="video-info"><h3>SHADOW SAW US</h3><p>// เพลงประกอบ OST</p></div>
+    </div>
+
+    <div class="video-card" onclick="openModal('9lTRHb_2ew8','SANITY SHOOTER — OST')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/9lTRHb_2ew8/hqdefault.jpg" alt="Sanity Shooter OST"/>
+        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d00"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="video-info"><h3>SANITY SHOOTER</h3><p>// เพลง Sanity Shooter</p></div>
+    </div>
+
+    <div class="video-card" onclick="openModal('FWrGu9cLh9w','GAME KNOWLEDGE')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/FWrGu9cLh9w/hqdefault.jpg" alt="Game Knowledge"/>
+        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0d00"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="video-info"><h3>GAME KNOWLEDGE</h3><p>// วิดีโอความรู้เกม</p></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== GALLERY ========== -->
+<div id="gallery">
+  <div class="inner">
+    <div class="sec-label">&#128247; GALLERY &middot; ผลงานภาพ</div>
+    <h2 class="sec-title" style="margin-bottom:0.5rem;">ภาพ<span>ผลงาน</span></h2>
+    <p style="font-family:var(--font-mono);font-size:0.78rem;color:var(--muted);letter-spacing:1px;margin-bottom:1.5rem;">รวมภาพผลงาน รูปวาด ภาพจากเกม ภาพจากอนิเมชั่น</p>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- รูปภาพจะถูก inject ด้วย JavaScript -->
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">[ CLOSE X ]</button>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">&#9668;</button>
+    <img id="lightboxImg" src="" alt=""/>
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">&#9658;</button>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ========== ABOUT ========== -->
+<div id="about">
+  <div class="inner">
+    <div class="about-terminal">
+      <div class="terminal-bar">
+        <span>sawie_collection.exe</span>
+        <div class="terminal-dots"><i></i><i></i><i></i></div>
+      </div>
+      <div class="terminal-body">
+<span class="prompt">C:\&gt;</span> whoami<br>
+<span class="value">SAWIE COLLECTION</span><br><br>
+<span class="prompt">C:\&gt;</span> cat about.txt<br>
+<span class="comment">// รวมผลงานทุกชิ้น</span><br>
+<span class="comment">// เกม &middot; อนิเมชั่น</span><br>
+<span class="comment">// การ์ตูน &middot; และอื่น ๆ</span><br><br>
+<span class="prompt">C:\&gt;</span> status<br>
+<span class="value">[ ONLINE ]</span> <span class="cursor-blink"></span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="sec-label">// เป้าหมาย</div>
+      <h2 class="sec-title">เป้าหมาย<br>ของ<span>เว็บไซต์</span></h2>
+      <p><strong>Sawie Collection</strong> คือเว็บที่ตั้งใจจะรวบรวมผลงานต่าง ๆ ที่เคยทำไว้มาอยู่ที่นี่</p>
+      <p>ไม่ว่าจะเป็นผลงานด้าน <strong>เกม อนิเมชั่น การ์ตูน</strong> ขอให้ทุกคนเสพผลงานทุกชิ้นอย่างมีความสุข!</p>
+      <div class="about-tags">
+        <span class="about-tag">&#127918; เกม</span>
+        <span class="about-tag">&#127916; อนิเมชั่น</span>
+        <span class="about-tag">&#128444;&#65039; การ์ตูน</span>
+        <span class="about-tag">&#127925; เพลง</span>
+        <span class="about-tag">&#10022; MORE</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact" class="sec">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="sec-label">&#9742; CONTACT</div>
+      <h2 class="sec-title">ติดต่อ<br><span>ฉัน</span></h2>
+      <p>มีโปรเจกต์ที่อยากทำร่วมกัน<br>หรืออยากสอบถามเรื่องผลงาน<br>ยินดีรับฟังทุกเรื่องเลย!</p>
+      <a href="mailto:realsawie@gmail.com" class="email-pill">&#9742; realsawie@gmail.com</a>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>อีเมลของคุณ</label>
+          <input type="email" placeholder="you@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label>หัวข้อ</label>
+          <input type="text" placeholder="ชื่อหัวข้อ" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ต้องการติดต่อเรื่องอะไร</label>
+        <select required>
+          <option value="" disabled selected>-- เลือกหมวดหมู่ --</option>
+          <option>COLLABORATION / ร่วมงาน</option>
+          <option>COMMISSION / จ้างงาน</option>
+          <option>FEEDBACK / คำติชม</option>
+          <option>สอบถามทั่วไป</option>
+          <option>อื่น ๆ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>รายละเอียด</label>
+        <textarea placeholder="// เขียนรายละเอียดที่นี่..."></textarea>
+      </div>
+      <div class="form-submit">
+        <span class="form-note">&#8594; ส่งไปที่ realsawie@gmail.com</span>
+        <button type="submit" class="btn btn-primary">[ SEND ]</button>
+      </div>
+      <div class="form-success" id="formSuccess">&#9654; ส่งข้อความสำเร็จ! จะตอบกลับเร็ว ๆ นี้_</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">SAWIE&#9742;COLLECTION</div>
+  <div class="footer-tagline">Game &middot; Animation &middot; Art &middot; &amp; More &mdash; Est. 2025</div>
+  <ul class="footer-nav">
+    <li><a href="#videos">TRAILER</a></li>
+    <li><a href="#platforms">ช่องทาง</a></li>
+    <li><a href="#works">WORKS</a></li>
+    <li><a href="#gallery">GALLERY</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2025 Sawie Collection &middot; &middot; All Rights Reserved</p>
+</footer>
+
+<script>
+/* =============================================
+   VIDEO MODAL
+   ============================================= */
+function openModal(id) {
+  document.getElementById('modalIframe').src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+  document.getElementById('videoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('videoModal') &&
+      !(e.target.classList && e.target.classList.contains('modal-close'))) return;
+  document.getElementById('modalIframe').src = '';
+  document.getElementById('videoModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal({}); closeLightbox(); } });
+
+/* =============================================
+   CONTACT FORM
+   ============================================= */
+function handleSubmit(e) {
+  e.preventDefault();
+  var s = document.getElementById('formSuccess');
+  s.style.display = 'block';
+  e.target.reset();
+  setTimeout(function () { s.style.display = 'none'; }, 5000);
+}
+
+/* =============================================
+   SCROLL ANIMATIONS
+   ============================================= */
+var obs = new IntersectionObserver(function (entries) {
+  entries.forEach(function (en) {
+    if (en.isIntersecting) { en.target.style.opacity = '1'; en.target.style.transform = 'translateY(0)'; }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.video-card,.platform-card,.itch-card,.gallery-item').forEach(function (el) {
+  el.style.opacity = '0'; el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity .5s ease,transform .5s ease,box-shadow .2s,border-color .2s';
+  obs.observe(el);
+});
+
+/* =============================================
+   KEYPAD CLICK
+   ============================================= */
+document.querySelectorAll('.key').forEach(function (k) {
+  k.addEventListener('click', function () {
+    k.style.background = 'var(--yellow)'; k.style.color = 'var(--bg)';
+    setTimeout(function () { k.style.background = ''; k.style.color = ''; }, 200);
+  });
+});
+
+/* =============================================
+   MUSIC PLAYER
+   ─────────────────────────────────────────────
+   วางไฟล์ .mp3 ในโฟลเดอร์ music/ แล้วเพิ่มชื่อไฟล์
+   และชื่อเพลงในอาร์เรย์ด้านล่างนี้
+   ตัวอย่าง: { file: 'music/shadow_saw_us.mp3', title: 'SHADOW SAW US' }
+   ============================================= */
+var playlist = [
+  // ▼ เพิ่มเพลงของคุณที่นี่ ▼
+  { file: 'music/track1.mp3', title: 'TRACK 1' },
+  { file: 'music/track2.mp3', title: 'TRACK 2' },
+  { file: 'music/track3.mp3', title: 'TRACK 3' },
+  { file: 'music/track1.mp3', title: 'TRACK 4' },
+  { file: 'music/track2.mp3', title: 'TRACK 5' },
+  { file: 'music/track3.mp3', title: 'TRACK 6' },
+  { file: 'music/track3.mp3', title: 'TRACK 7' },
+];
+
+var audio = document.getElementById('bgmAudio');
+var currentTrack = 0;
+var isPlaying = false;
+
+audio.volume = 0.4;
+
+function loadTrack(idx) {
+  currentTrack = ((idx % playlist.length) + playlist.length) % playlist.length;
+  audio.src = playlist[currentTrack].file;
+  document.getElementById('musicTitle').textContent = playlist[currentTrack].title;
+  document.getElementById('musicStatus').textContent = '// TRACK ' + (currentTrack + 1) + ' / ' + playlist.length;
+}
+
+function playTrack() {
+  audio.play().then(function () {
+    isPlaying = true;
+    document.getElementById('playPauseBtn').textContent = '▐▐';
+    document.getElementById('musicDisc').classList.remove('paused');
+    document.getElementById('musicStatus').textContent = '// PLAYING ▶';
+  }).catch(function () {
+    document.getElementById('musicStatus').textContent = '// CLICK ▶ TO PLAY';
+  });
+}
+
+function togglePlay() {
+  if (isPlaying) {
+    audio.pause();
+    isPlaying = false;
+    document.getElementById('playPauseBtn').textContent = '▶';
+    document.getElementById('musicDisc').classList.add('paused');
+    document.getElementById('musicStatus').textContent = '// PAUSED ▐▐';
+  } else {
+    playTrack();
+  }
+}
+
+function nextTrack() {
+  loadTrack(currentTrack + 1);
+  if (isPlaying) playTrack(); else audio.load();
+}
+
+function prevTrack() {
+  loadTrack(currentTrack - 1);
+  if (isPlaying) playTrack(); else audio.load();
+}
+
+function setVolume(v) { audio.volume = v; }
+
+function seekAudio(e) {
+  var bar = document.getElementById('progressBar');
+  var pct = e.offsetX / bar.offsetWidth;
+  if (audio.duration) audio.currentTime = pct * audio.duration;
+}
+
+audio.addEventListener('timeupdate', function () {
+  if (audio.duration) {
+    var pct = (audio.currentTime / audio.duration) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+});
+
+audio.addEventListener('ended', function () { nextTrack(); playTrack(); });
+
+// โหลดเพลงแรก + autoplay หลัง user gesture แรก
+loadTrack(0);
+document.addEventListener('click', function startAudio() {
+  if (!isPlaying) playTrack();
+  document.removeEventListener('click', startAudio);
+}, { once: true });
+
+/* =============================================
+   GALLERY
+   ─────────────────────────────────────────────
+   วางรูปภาพในโฟลเดอร์ Photo/ แล้วเพิ่มชื่อไฟล์
+   และคำบรรยายในอาร์เรย์ด้านล่าง
+   ตัวอย่าง: { src: 'Photo/art01.jpg', caption: 'ARTWORK 01' }
+   ============================================= */
+var photos = [
+  // ▼ เพิ่มรูปภาพของคุณที่นี่ ▼
+  // { src: 'Photo/art01.jpg', caption: 'ARTWORK 01' },
+  // { src: 'Photo/art02.png', caption: 'ARTWORK 02' },
+  // { src: 'Photo/game01.jpg', caption: 'GAME SCREENSHOT' },
+  // ─────────────────────────────────────
+  // Placeholder ตัวอย่าง (จะหายไปเมื่อเพิ่มรูปจริง)
+  { src: 'Photo/photo_01.jpg', caption: 'PHOTO 01' },
+  { src: 'Photo/photo_02.jpg', caption: 'PHOTO 02' },
+  { src: 'Photo/photo_03.jpg', caption: 'PHOTO 03' },
+  { src: 'Photo/photo_04.jpg', caption: 'PHOTO 04' },
+  { src: 'Photo/photo_05.jpg', caption: 'PHOTO 05' },
+  { src: 'Photo/photo_06.jpg', caption: 'PHOTO 06' },
+  { src: 'Photo/photo_07.jpg', caption: 'PHOTO 07' },
+  { src: 'Photo/photo_08.jpg', caption: 'PHOTO 08' },
+  { src: 'Photo/photo_09.jpg', caption: 'PHOTO 09' },
+  { src: 'Photo/photo_10.jpg', caption: 'PHOTO 10' },
+];
+
+var currentPhoto = 0;
+
+function buildGallery() {
+  var grid = document.getElementById('galleryGrid');
+  grid.innerHTML = '';
+  photos.forEach(function (photo, idx) {
+    var item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.innerHTML =
+      '<img src="' + photo.src + '" alt="' + photo.caption + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'">' +
+      '<div class="gallery-overlay"><span>' + photo.caption + '</span></div>';
+    item.addEventListener('click', function () { openLightbox(idx); });
+    grid.appendChild(item);
+    obs.observe(item);
+  });
+}
+
+function openLightbox(idx) {
+  currentPhoto = idx;
+  document.getElementById('lightboxImg').src = photos[idx].src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (e && e.target !== document.getElementById('lightbox') &&
+      !(e.target.classList && e.target.classList.contains('lightbox-close'))) return;
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function lightboxNav(dir) {
+  currentPhoto = ((currentPhoto + dir + photos.length) % photos.length);
+  document.getElementById('lightboxImg').src = photos[currentPhoto].src;
+}
+
+buildGallery();
+</script>
+</body>
+</html>
