@@ -4,27 +4,18 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="description" content="Sawie Collection — รวมผลงานทุกชิ้น เกม อนิเมชั่น การ์ตูน ไว้ในที่เดียว"/>
-<meta property="og:title" content="Sawie Collection"/>
-<meta property="og:description" content="รวมผลงานทุกชิ้น เกม อนิเมชั่น การ์ตูน ไว้ในที่เดียว"/>
-<meta property="og:type" content="website"/>
 <title>Sawie Collection</title>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Thai:wght@300;400;700&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --bg:       #0d0000;
-  --bg2:      #110000;
-  --bg3:      #1a0000;
-  --yellow:   #ff0000;
-  --yellow2:  #ff7676;
-  --red:      #ff2244;
-  --white:    #f5f5e8;
-  --muted:    rgb(122,64,64);
-  --border:   rgba(255,0,0,0.22);
-  --font-crt: 'VT323', monospace;
-  --font-mono:'Courier Prime', monospace;
-  --font-body:'Noto Sans Thai', sans-serif;
-  --nav-h:    52px;
-  --player-h: 56px;
+:root{
+  --bg:#0d0000;--bg2:#110000;--bg3:#1a0000;
+  --red:#ff0000;--red2:#ff7676;--red3:#ff2244;
+  --blue:#00aaff;--blue2:#76d4ff;
+  --yellow:#ff0000;--yellow2:#ff7676;
+  --white:#f5f5e8;--muted:rgb(122,64,64);
+  --border:rgba(255,0,0,0.22);
+  --font-crt:'VT323',monospace;--font-mono:'Courier Prime',monospace;--font-body:'Noto Sans Thai',sans-serif;
+  --nav-h:52px;--player-h:56px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -32,17 +23,19 @@ body{background:var(--bg);color:var(--white);font-family:var(--font-body);line-h
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.13) 0px,rgba(0,0,0,.13) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:998;}
 body::after{content:'';position:fixed;inset:0;background:rgba(255,0,0,.015);pointer-events:none;z-index:997;animation:flicker 6s step-start infinite;}
 @keyframes flicker{0%,95%,100%{opacity:1;}96%{opacity:.6;}97%{opacity:1;}98%{opacity:.7;}99%{opacity:1;}}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:var(--nav-h);background:var(--bg);border-bottom:1px solid var(--border);box-shadow:0 0 20px rgba(255,0,0,.08);gap:1rem;}
-.nav-logo{font-family:var(--font-crt);font-size:1.9rem;color:var(--yellow);text-decoration:none;letter-spacing:4px;text-shadow:0 0 12px var(--yellow);animation:blink-logo 4s step-start infinite;white-space:nowrap;flex-shrink:0;}
-@keyframes blink-logo{0%,94%,96%,100%{text-shadow:0 0 12px var(--yellow);}95%{text-shadow:none;}}
+.nav-logo{font-family:var(--font-crt);font-size:1.9rem;color:var(--red);text-decoration:none;letter-spacing:4px;text-shadow:0 0 12px var(--red);animation:blink-logo 4s step-start infinite;white-space:nowrap;flex-shrink:0;}
+@keyframes blink-logo{0%,94%,96%,100%{text-shadow:0 0 12px var(--red);}95%{text-shadow:none;}}
 .nav-links{display:flex;gap:1.4rem;list-style:none;flex-wrap:nowrap;overflow:hidden;}
-.nav-links a{font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s,text-shadow .2s;white-space:nowrap;}
-.nav-links a:hover{color:var(--yellow);text-shadow:0 0 8px var(--yellow);}
-.nav-status{font-family:var(--font-crt);font-size:1rem;color:var(--yellow);letter-spacing:2px;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0;}
-.dot-blink{width:8px;height:8px;background:var(--yellow);border-radius:50%;animation:dotblink 1.2s step-start infinite;box-shadow:0 0 6px var(--yellow);flex-shrink:0;}
+.nav-links a{font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--red);}
+.nav-status{font-family:var(--font-crt);font-size:1rem;color:var(--red);letter-spacing:2px;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0;}
+.dot-blink{width:8px;height:8px;background:var(--red);border-radius:50%;animation:dotblink 1.2s step-start infinite;box-shadow:0 0 6px var(--red);flex-shrink:0;}
 @keyframes dotblink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
 .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:1px solid var(--border);padding:.4rem .5rem;cursor:pointer;flex-shrink:0;}
-.nav-hamburger span{display:block;width:20px;height:2px;background:var(--yellow);transition:all .2s;}
+.nav-hamburger span{display:block;width:20px;height:2px;background:var(--red);transition:all .2s;}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
@@ -50,236 +43,300 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-drawer.open{display:block;}
 .nav-drawer ul{list-style:none;display:flex;flex-direction:column;gap:.8rem;}
 .nav-drawer ul a{font-family:var(--font-crt);font-size:1.4rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;display:block;padding:.3rem 0;border-bottom:1px solid var(--border);}
-.nav-drawer ul a:hover{color:var(--yellow);}
+.nav-drawer ul a:hover{color:var(--red);}
+
+/* MUSIC */
 .music-player{position:fixed;bottom:0;left:0;right:0;z-index:300;background:var(--bg2);border-top:1px solid var(--border);padding:.45rem 1.5rem;display:flex;align-items:center;gap:1rem;box-shadow:0 -4px 20px rgba(255,0,0,.1);min-height:var(--player-h);}
-.music-icon{font-family:var(--font-crt);font-size:1.4rem;color:var(--yellow);animation:spin-slow 4s linear infinite;display:inline-block;flex-shrink:0;}
+.music-icon{font-family:var(--font-crt);font-size:1.4rem;color:var(--red);animation:spin-slow 4s linear infinite;display:inline-block;flex-shrink:0;}
 @keyframes spin-slow{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 .music-icon.paused{animation-play-state:paused;}
 .music-info{flex:1;min-width:0;}
-.music-title{font-family:var(--font-crt);font-size:.95rem;letter-spacing:2px;color:var(--yellow2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.music-title{font-family:var(--font-crt);font-size:.95rem;letter-spacing:2px;color:var(--red2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .music-status{font-family:var(--font-mono);font-size:.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
 .music-controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0;}
-.music-btn{font-family:var(--font-crt);font-size:1rem;background:transparent;border:1px solid var(--border);color:var(--yellow);padding:.15rem .5rem;cursor:pointer;transition:all .15s;letter-spacing:1px;touch-action:manipulation;}
-.music-btn:hover{background:var(--yellow);color:var(--bg);border-color:var(--yellow);}
+.music-btn{font-family:var(--font-crt);font-size:1rem;background:transparent;border:1px solid var(--border);color:var(--red);padding:.15rem .5rem;cursor:pointer;transition:all .15s;letter-spacing:1px;}
+.music-btn:hover{background:var(--red);color:var(--bg);}
 .music-progress{flex:1;max-width:180px;height:3px;background:var(--bg3);border:1px solid var(--border);cursor:pointer;position:relative;flex-shrink:0;}
-.music-progress-bar{height:100%;background:var(--yellow);width:0%;transition:width .5s linear;}
+.music-progress-bar{height:100%;background:var(--red);width:0%;}
 .music-vol{display:flex;align-items:center;gap:.35rem;flex-shrink:0;}
 .music-vol label{font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:1px;}
-.music-vol input[type=range]{width:60px;accent-color:var(--yellow);cursor:pointer;}
-#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(var(--nav-h) + 3rem) 1.5rem calc(var(--player-h) + 3rem);position:relative;overflow:hidden;}
+.music-vol input[type=range]{width:60px;accent-color:var(--red);cursor:pointer;}
+
+/* HERO */
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(var(--nav-h)+3rem) 1.5rem calc(var(--player-h)+3rem);position:relative;overflow:hidden;}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,0,0,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
 .hero-ascii{font-family:var(--font-crt);font-size:clamp(.45rem,1.1vw,.8rem);line-height:1.25;color:rgba(255,0,0,.09);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:pre;pointer-events:none;letter-spacing:2px;user-select:none;}
-.hero-eyebrow{font-family:var(--font-mono);font-size:.68rem;letter-spacing:5px;text-transform:uppercase;color:var(--yellow);border:1px solid var(--border);padding:.3rem 1rem;margin-bottom:1.6rem;display:inline-block;animation:fadeUp .6s ease both;box-shadow:0 0 12px rgba(255,0,0,.1);}
-.hero-title{font-family:var(--font-crt);font-size:clamp(3.8rem,14vw,11rem);letter-spacing:clamp(4px,1.5vw,8px);line-height:.88;color:var(--yellow);text-shadow:0 0 40px rgba(255,0,0,.5),3px 3px 0 rgba(255,34,68,.4),-1px -1px 0 rgba(0,200,255,.2);animation:fadeUp .6s .1s ease both,glitch 8s step-start infinite;}
-@keyframes glitch{0%,92%,100%{text-shadow:0 0 40px rgba(255,0,0,.5),3px 3px 0 rgba(255,34,68,.4),-1px -1px 0 rgba(0,200,255,.2);transform:none;}93%{transform:translate(-3px,0);text-shadow:-3px 0 var(--red),3px 0 #0cf;}94%{transform:translate(3px,0);text-shadow:3px 0 var(--red),-3px 0 #0cf;}95%{transform:none;text-shadow:0 0 40px rgba(255,0,0,.5);}}
-.hero-sub{margin-top:1.1rem;font-family:var(--font-mono);font-size:clamp(.75rem,.9rem + .2vw,.9rem);color:var(--muted);letter-spacing:2px;max-width:420px;animation:fadeUp .6s .2s ease both;}
-.hero-sub em{color:var(--yellow2);font-style:normal;}
+.hero-eyebrow{font-family:var(--font-mono);font-size:.68rem;letter-spacing:5px;text-transform:uppercase;color:var(--red);border:1px solid var(--border);padding:.3rem 1rem;margin-bottom:1.6rem;display:inline-block;animation:fadeUp .6s ease both;}
+.hero-title{font-family:var(--font-crt);font-size:clamp(3.8rem,14vw,11rem);letter-spacing:clamp(4px,1.5vw,8px);line-height:.88;color:var(--red);text-shadow:0 0 40px rgba(255,0,0,.5),3px 3px 0 rgba(255,34,68,.4),-1px -1px 0 rgba(0,200,255,.2);animation:fadeUp .6s .1s ease both,glitch 8s step-start infinite;}
+@keyframes glitch{0%,92%,100%{text-shadow:0 0 40px rgba(255,0,0,.5),3px 3px 0 rgba(255,34,68,.4),-1px -1px 0 rgba(0,200,255,.2);transform:none;}93%{transform:translate(-3px,0);text-shadow:-3px 0 var(--red3),3px 0 #0cf;}94%{transform:translate(3px,0);text-shadow:3px 0 var(--red3),-3px 0 #0cf;}95%{transform:none;}}
+.hero-sub{margin-top:1.1rem;font-family:var(--font-mono);font-size:clamp(.75rem,.9rem,.9rem);color:var(--muted);letter-spacing:2px;max-width:420px;animation:fadeUp .6s .2s ease both;}
+.hero-sub em{color:var(--red2);font-style:normal;}
 .hero-cta{margin-top:2.2rem;display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s .3s ease both;}
 .keypad{margin-top:3rem;display:grid;grid-template-columns:repeat(3,44px);gap:7px;animation:fadeUp .6s .4s ease both;}
-.key{width:44px;height:44px;background:var(--bg3);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-crt);font-size:1.3rem;color:var(--yellow2);cursor:default;transition:all .1s;user-select:none;touch-action:manipulation;}
+.key{width:44px;height:44px;background:var(--bg3);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-crt);font-size:1.3rem;color:var(--red2);cursor:default;transition:all .1s;user-select:none;}
 .key sub{font-size:.43rem;letter-spacing:1px;color:var(--muted);font-family:var(--font-mono);line-height:1;text-transform:uppercase;}
-.key:hover,.key:active{background:var(--yellow);color:var(--bg);box-shadow:0 0 16px rgba(255,0,0,.5);}
+.key:hover,.key:active{background:var(--red);color:var(--bg);box-shadow:0 0 16px rgba(255,0,0,.5);}
 .key:hover sub,.key:active sub{color:var(--bg);}
 .key:active{transform:scale(.9);}
-.scroll-hint{position:absolute;bottom:calc(var(--player-h) + 1.2rem);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:fadeUp 1s .7s ease both;}
+.scroll-hint{position:absolute;bottom:calc(var(--player-h)+1.2rem);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:fadeUp 1s .7s ease both;}
 .scroll-hint span{font-family:var(--font-mono);font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
-.scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,var(--yellow),transparent);animation:scrollAnim 1.6s ease-in-out infinite;}
+.scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,var(--red),transparent);animation:scrollAnim 1.6s ease-in-out infinite;}
 @keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top;opacity:1;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* SECTIONS */
 .sec{padding:5rem 1.5rem;max-width:1200px;margin:0 auto;}
-.sec-label{font-family:var(--font-crt);font-size:.95rem;letter-spacing:5px;text-transform:uppercase;color:var(--yellow);margin-bottom:.15rem;}
+.sec-label{font-family:var(--font-crt);font-size:.95rem;letter-spacing:5px;text-transform:uppercase;color:var(--red);margin-bottom:.15rem;}
 .sec-title{font-family:var(--font-crt);font-size:clamp(2.4rem,7vw,5.5rem);letter-spacing:clamp(2px,1vw,4px);line-height:.95;color:var(--white);margin-bottom:2.2rem;}
-.sec-title span{color:var(--yellow);}
+.sec-title span{color:var(--red);}
 .divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);}
-.btn{font-family:var(--font-crt);font-size:1.15rem;letter-spacing:3px;text-transform:uppercase;padding:.55rem 1.8rem;cursor:pointer;text-decoration:none;transition:all .15s;border:none;display:inline-block;touch-action:manipulation;}
-.btn-primary{background:var(--yellow);color:var(--bg);box-shadow:4px 4px 0 rgba(255,0,0,.3);}
-.btn-primary:hover{background:var(--white);box-shadow:0 0 20px rgba(255,0,0,.5),4px 4px 0 var(--red);transform:translate(-2px,-2px);}
-.btn-outline{background:transparent;color:var(--yellow);border:1px solid var(--yellow);box-shadow:3px 3px 0 var(--red);}
-.btn-outline:hover{background:var(--yellow);color:var(--bg);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red);}
+.btn{font-family:var(--font-crt);font-size:1.15rem;letter-spacing:3px;text-transform:uppercase;padding:.55rem 1.8rem;cursor:pointer;text-decoration:none;transition:all .15s;border:none;display:inline-block;}
+.btn-primary{background:var(--red);color:var(--bg);box-shadow:4px 4px 0 rgba(255,0,0,.3);}
+.btn-primary:hover{background:var(--white);box-shadow:0 0 20px rgba(255,0,0,.5),4px 4px 0 var(--red3);transform:translate(-2px,-2px);}
+.btn-outline{background:transparent;color:var(--red);border:1px solid var(--red);box-shadow:3px 3px 0 var(--red3);}
+.btn-outline:hover{background:var(--red);color:var(--bg);transform:translate(-2px,-2px);}
+
+/* VIDEO */
 .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:1.3rem;}
 .video-card{background:var(--bg2);border:1px solid var(--border);cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden;}
 .video-card::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0px,rgba(0,0,0,.08) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:2;}
-.video-card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--yellow);border-color:var(--yellow);}
+.video-card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--red);border-color:var(--red);}
 .video-thumb{position:relative;width:100%;padding-top:56.25%;background:var(--bg3);overflow:hidden;}
 .video-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.2) saturate(.8) brightness(.85);transition:filter .3s;}
 .video-card:hover .video-thumb img{filter:sepia(0) saturate(1.1) brightness(1);}
-.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,0,0,.45);z-index:3;transition:background .2s;}
-.video-card:hover .play-overlay{background:rgba(13,0,0,.2);}
-.play-btn{width:52px;height:52px;background:var(--yellow);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;box-shadow:3px 3px 0 var(--red);clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);}
-.video-card:hover .play-btn{transform:scale(1.1);box-shadow:5px 5px 0 var(--red);}
+.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,0,0,.45);z-index:3;}
+.play-btn{width:52px;height:52px;background:var(--red);display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 var(--red3);}
 .play-btn svg{margin-left:5px;}
 .video-info{padding:.85rem 1rem 1rem;position:relative;z-index:2;}
-.video-info h3{font-family:var(--font-crt);font-size:1.25rem;letter-spacing:2px;color:var(--yellow2);margin-bottom:.15rem;}
+.video-info h3{font-family:var(--font-crt);font-size:1.25rem;letter-spacing:2px;color:var(--red2);margin-bottom:.15rem;}
 .video-info p{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:1px;}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;align-items:center;justify-content:center;padding:1rem;}
 .modal-overlay.active{display:flex;}
-.modal-content{position:relative;width:100%;max-width:880px;background:var(--bg2);border:1px solid var(--yellow);box-shadow:0 0 60px rgba(232,255,0,.2),6px 6px 0 var(--red);}
-.modal-close{position:absolute;top:-42px;right:0;font-family:var(--font-crt);font-size:1.5rem;letter-spacing:2px;background:none;border:none;color:var(--yellow);cursor:pointer;transition:color .2s;padding:.25rem .5rem;}
-.modal-close:hover{color:var(--red);}
+.modal-content{position:relative;width:100%;max-width:880px;background:var(--bg2);border:1px solid var(--red);box-shadow:0 0 60px rgba(255,0,0,.2),6px 6px 0 var(--red3);}
+.modal-close{position:absolute;top:-42px;right:0;font-family:var(--font-crt);font-size:1.5rem;letter-spacing:2px;background:none;border:none;color:var(--red);cursor:pointer;padding:.25rem .5rem;}
+.modal-close:hover{color:var(--red2);}
 .modal-video{width:100%;padding-top:56.25%;position:relative;}
 .modal-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+
+/* PLATFORM */
 .platform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:1.1rem;}
 .platform-card{background:var(--bg2);border:1px solid var(--border);padding:1.6rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;text-decoration:none;color:var(--white);transition:all .2s;position:relative;overflow:hidden;}
-.platform-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.platform-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
 .platform-card:hover::after{transform:scaleX(1);}
-.platform-card:hover{border-color:var(--yellow);box-shadow:4px 4px 0 rgba(255,0,0,.25);transform:translate(-2px,-2px);}
+.platform-card:hover{border-color:var(--red);box-shadow:4px 4px 0 rgba(255,0,0,.25);transform:translate(-2px,-2px);}
 .platform-icon{font-size:2rem;}
-.platform-card h3{font-family:var(--font-crt);font-size:1.5rem;letter-spacing:3px;color:var(--yellow2);}
+.platform-card h3{font-family:var(--font-crt);font-size:1.5rem;letter-spacing:3px;color:var(--red2);}
 .platform-card p{font-family:var(--font-mono);font-size:.74rem;color:var(--muted);letter-spacing:1px;}
-.platform-tag{font-family:var(--font-crt);font-size:.85rem;letter-spacing:2px;color:var(--yellow);border:1px solid var(--border);padding:.1rem .5rem;width:fit-content;}
+.platform-tag{font-family:var(--font-crt);font-size:.85rem;letter-spacing:2px;color:var(--red);border:1px solid var(--border);padding:.1rem .5rem;width:fit-content;}
 .itch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:1.1rem;margin-top:2.5rem;}
 .itch-card{background:var(--bg2);border:1px solid var(--border);padding:1.6rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;text-decoration:none;color:var(--white);transition:all .2s;position:relative;overflow:hidden;}
-.itch-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.itch-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
 .itch-card:hover::after{transform:scaleX(1);}
-.itch-card:hover{border-color:var(--yellow);box-shadow:4px 4px 0 rgba(255,0,0,.25);transform:translate(-2px,-2px);}
-.itch-card .platform-icon{font-size:1.9rem;}
-.itch-card h3{font-family:var(--font-crt);font-size:1.25rem;letter-spacing:2px;color:var(--yellow2);}
+.itch-card:hover{border-color:var(--red);box-shadow:4px 4px 0 rgba(255,0,0,.25);transform:translate(-2px,-2px);}
+.itch-card h3{font-family:var(--font-crt);font-size:1.25rem;letter-spacing:2px;color:var(--red2);}
 .itch-card p{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:1px;line-height:1.6;}
-.itch-tag{font-family:var(--font-crt);font-size:.82rem;letter-spacing:2px;color:var(--yellow);border:1px solid var(--border);padding:.1rem .5rem;width:fit-content;}
+.itch-tag{font-family:var(--font-crt);font-size:.82rem;letter-spacing:2px;color:var(--red);border:1px solid var(--border);padding:.1rem .5rem;width:fit-content;}
+
+/* GALLERY */
 #gallery{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 1.5rem;}
 #gallery .inner{max-width:1200px;margin:0 auto;}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(170px,100%),1fr));gap:.7rem;margin-top:1rem;}
 .gallery-item{position:relative;overflow:hidden;cursor:pointer;background:var(--bg3);border:1px solid var(--border);aspect-ratio:1;transition:all .2s;}
-.gallery-item:hover{border-color:var(--yellow);box-shadow:4px 4px 0 var(--red);transform:translate(-2px,-2px);}
+.gallery-item:hover{border-color:var(--red);box-shadow:4px 4px 0 var(--red3);transform:translate(-2px,-2px);}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.15) saturate(.85) brightness(.85);transition:filter .3s;}
 .gallery-item:hover img{filter:sepia(0) saturate(1.1) brightness(1);}
 .gallery-overlay{position:absolute;inset:0;background:rgba(13,0,0,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
 .gallery-item:hover .gallery-overlay{opacity:1;}
-.gallery-overlay span{font-family:var(--font-crt);font-size:1.1rem;color:var(--yellow);letter-spacing:2px;}
+.gallery-overlay span{font-family:var(--font-crt);font-size:1.1rem;color:var(--red);letter-spacing:2px;}
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:600;align-items:center;justify-content:center;padding:1rem;}
 .lightbox.active{display:flex;}
 .lightbox-inner{position:relative;max-width:min(90vw,900px);width:100%;}
-.lightbox-inner img{max-width:100%;max-height:82vh;width:100%;object-fit:contain;border:1px solid var(--border);box-shadow:6px 6px 0 var(--red);display:block;margin:0 auto;}
-.lightbox-close{position:absolute;top:-44px;right:0;font-family:var(--font-crt);font-size:1.4rem;background:none;border:none;color:var(--yellow);cursor:pointer;padding:.2rem .4rem;}
-.lightbox-close:hover{color:var(--red);}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--font-crt);font-size:1.8rem;background:rgba(13,0,0,.75);border:1px solid var(--border);color:var(--yellow);cursor:pointer;padding:.3rem .65rem;transition:all .15s;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+.lightbox-inner img{max-width:100%;max-height:82vh;width:100%;object-fit:contain;border:1px solid var(--border);box-shadow:6px 6px 0 var(--red3);display:block;margin:0 auto;}
+.lightbox-close{position:absolute;top:-44px;right:0;font-family:var(--font-crt);font-size:1.4rem;background:none;border:none;color:var(--red);cursor:pointer;padding:.2rem .4rem;}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--font-crt);font-size:1.8rem;background:rgba(13,0,0,.75);border:1px solid var(--border);color:var(--red);cursor:pointer;padding:.3rem .65rem;transition:all .15s;}
 .lightbox-prev{left:-3rem;}
 .lightbox-next{right:-3rem;}
-.lightbox-nav:hover{background:var(--yellow);color:var(--bg);}
+.lightbox-nav:hover{background:var(--red);color:var(--bg);}
+
+/* ABOUT */
 #about{background:var(--bg2);padding:5rem 1.5rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 #about .inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:center;}
-.about-terminal{background:var(--bg);border:1px solid var(--yellow);width:340px;box-shadow:6px 6px 0 rgba(255,0,0,.25);flex-shrink:0;}
-.terminal-bar{background:var(--yellow);padding:.35rem .8rem;display:flex;align-items:center;justify-content:space-between;}
+.about-terminal{background:var(--bg);border:1px solid var(--red);width:340px;box-shadow:6px 6px 0 rgba(255,0,0,.25);flex-shrink:0;}
+.terminal-bar{background:var(--red);padding:.35rem .8rem;display:flex;align-items:center;justify-content:space-between;}
 .terminal-bar span{font-family:var(--font-mono);font-size:.68rem;font-weight:700;color:var(--bg);letter-spacing:1px;text-transform:uppercase;}
 .terminal-dots{display:flex;gap:5px;}
 .terminal-dots i{width:9px;height:9px;border-radius:50%;background:var(--bg);opacity:.4;}
-.terminal-body{padding:1.3rem 1.1rem;font-family:var(--font-crt);font-size:1.02rem;letter-spacing:1px;line-height:1.7;color:var(--yellow);min-height:200px;}
-.terminal-body .prompt{color:var(--red);}
+.terminal-body{padding:1.3rem 1.1rem;font-family:var(--font-crt);font-size:1.02rem;letter-spacing:1px;line-height:1.7;color:var(--red);min-height:200px;}
+.terminal-body .prompt{color:var(--red3);}
 .terminal-body .comment{color:var(--muted);}
-.terminal-body .value{color:var(--yellow2);}
-.cursor-blink{display:inline-block;width:10px;height:1.05em;background:var(--yellow);vertical-align:text-bottom;animation:cur .9s step-start infinite;}
+.terminal-body .value{color:var(--red2);}
+.cursor-blink{display:inline-block;width:10px;height:1.05em;background:var(--red);vertical-align:text-bottom;animation:cur .9s step-start infinite;}
 @keyframes cur{0%,49%{opacity:1;}50%,100%{opacity:0;}}
-.about-text .sec-title{margin-bottom:1rem;}
 .about-text p{color:var(--muted);font-size:.9rem;line-height:1.9;margin-bottom:.8rem;}
-.about-text p strong{color:var(--yellow2);}
+.about-text p strong{color:var(--red2);}
 .about-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.3rem;}
-.about-tag{font-family:var(--font-crt);font-size:.95rem;letter-spacing:2px;padding:.2rem .65rem;border:1px solid var(--border);color:var(--yellow);}
+.about-tag{font-family:var(--font-crt);font-size:.95rem;letter-spacing:2px;padding:.2rem .65rem;border:1px solid var(--border);color:var(--red);}
 .profile-grid{display:grid;grid-template-columns:300px 1fr;gap:3rem;align-items:center;}
 .profile-img-wrap{position:relative;}
-.profile-img-wrap img{width:100%;border:1px solid var(--border);box-shadow:6px 6px 0 var(--red);filter:contrast(1.1) brightness(.9);display:block;}
-.profile-badge{position:absolute;bottom:-12px;right:-12px;background:var(--yellow);color:var(--bg);font-family:var(--font-crt);padding:.2rem .6rem;letter-spacing:2px;font-size:.88rem;}
+.profile-img-wrap img{width:100%;border:1px solid var(--border);box-shadow:6px 6px 0 var(--red3);filter:contrast(1.1) brightness(.9);display:block;}
+.profile-badge{position:absolute;bottom:-12px;right:-12px;background:var(--red);color:var(--bg);font-family:var(--font-crt);padding:.2rem .6rem;letter-spacing:2px;font-size:.88rem;}
 .profile-text{font-family:var(--font-mono);color:var(--muted);line-height:1.9;}
 .profile-text p{margin-bottom:.7rem;}
-.profile-text strong{color:var(--yellow2);}
+.profile-text strong{color:var(--red2);}
 
-/* ─── CONTACT ─── */
+/* CONTACT */
 .contact-static{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-.contact-info-block .sec-title{margin-bottom:1rem;}
 .contact-info-block p{color:var(--muted);font-size:.86rem;font-family:var(--font-mono);letter-spacing:1px;line-height:1.8;margin-bottom:1.5rem;}
 .contact-links{display:flex;flex-direction:column;gap:.85rem;}
-.contact-pill{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-crt);font-size:1.1rem;letter-spacing:2px;color:var(--yellow);background:var(--bg2);border:1px solid var(--yellow);padding:.55rem 1.2rem;text-decoration:none;box-shadow:3px 3px 0 rgba(255,0,0,.2);transition:all .15s;word-break:break-all;}
-.contact-pill:hover{background:var(--yellow);color:var(--bg);box-shadow:5px 5px 0 var(--red);transform:translate(-2px,-2px);}
+.contact-pill{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-crt);font-size:1.1rem;letter-spacing:2px;color:var(--red);background:var(--bg2);border:1px solid var(--red);padding:.55rem 1.2rem;text-decoration:none;box-shadow:3px 3px 0 rgba(255,0,0,.2);transition:all .15s;word-break:break-all;}
+.contact-pill:hover{background:var(--red);color:var(--bg);box-shadow:5px 5px 0 var(--red3);transform:translate(-2px,-2px);}
 .contact-pill .pill-icon{font-size:1.2rem;flex-shrink:0;}
 
-/* ─── CREATURE DRAW PANEL ─── */
+/* ══════════════════════════
+   CREATURE WAR SECTION
+══════════════════════════ */
+#creature-war{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.war-header{padding:1.5rem 1.5rem .5rem;max-width:1200px;margin:0 auto;}
+.war-phase-bar{display:flex;align-items:center;justify-content:space-between;padding:.4rem 1rem;background:var(--bg);border:1px solid var(--border);margin-bottom:.5rem;flex-wrap:wrap;gap:.5rem;}
+.war-phase-text{font-family:var(--font-crt);font-size:1rem;letter-spacing:2px;color:var(--muted);}
+.war-stats{display:flex;gap:1.2rem;align-items:center;}
+.war-stat{font-family:var(--font-crt);font-size:.9rem;letter-spacing:1px;}
+.war-stat.red{color:var(--red2);}
+.war-stat.blue{color:var(--blue2);}
+
+/* WAR LAYOUT */
+.war-layout{display:flex;height:520px;overflow:hidden;}
+
+/* DRAW PANEL */
+.war-draw-panel{width:240px;min-width:180px;background:var(--bg);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:.6rem;gap:.5rem;overflow-y:auto;flex-shrink:0;}
+.panel-title{font-family:var(--font-crt);font-size:1rem;letter-spacing:3px;color:var(--white);border-bottom:1px solid var(--border);padding-bottom:.25rem;margin-bottom:.1rem;}
+.color-pick{display:flex;gap:.3rem;}
+.color-btn{flex:1;padding:.3rem .4rem;font-family:var(--font-crt);font-size:.85rem;letter-spacing:2px;border:2px solid transparent;cursor:pointer;transition:all .15s;text-align:center;}
+.color-btn.red{background:rgba(255,0,0,.15);color:var(--red);border-color:rgba(255,0,0,.3);}
+.color-btn.red.active{background:rgba(255,0,0,.3);border-color:var(--red);box-shadow:0 0 8px rgba(255,0,0,.4);}
+.color-btn.blue{background:rgba(0,170,255,.15);color:var(--blue);border-color:rgba(0,170,255,.3);}
+.color-btn.blue.active{background:rgba(0,170,255,.3);border-color:var(--blue);box-shadow:0 0 8px rgba(0,170,255,.4);}
+.tool-row{display:flex;gap:.3rem;}
+.tool-btn{font-family:var(--font-crt);font-size:.75rem;letter-spacing:1px;padding:.18rem .4rem;background:transparent;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all .15s;}
+.tool-btn:hover,.tool-btn.active{background:var(--red);color:var(--bg);border-color:var(--red);}
+.size-row{display:flex;align-items:center;gap:.4rem;}
+.size-row label{font-family:var(--font-mono);font-size:.58rem;color:var(--muted);letter-spacing:1px;}
+.size-row input{flex:1;accent-color:var(--red);}
+.war-canvas-wrap{position:relative;border:1px solid var(--border);background:var(--bg3);cursor:crosshair;flex-shrink:0;}
+#warDrawCanvas{display:block;width:100%;image-rendering:pixelated;}
+.action-row{display:flex;gap:.3rem;flex-wrap:wrap;}
+.action-btn{font-family:var(--font-crt);font-size:.78rem;letter-spacing:1px;padding:.28rem .5rem;cursor:pointer;transition:all .15s;border:1px solid var(--border);background:transparent;color:var(--white);}
+.action-btn:hover{background:var(--border);}
+.spawn-red{background:rgba(255,0,0,.2)!important;color:var(--red)!important;border-color:var(--red)!important;}
+.spawn-red:hover{background:var(--red)!important;color:var(--bg)!important;}
+.spawn-blue{background:rgba(0,170,255,.2)!important;color:var(--blue)!important;border-color:var(--blue)!important;}
+.spawn-blue:hover{background:var(--blue)!important;color:var(--bg)!important;}
+.nuke-btn{background:rgba(255,200,0,.15)!important;color:#ffcc00!important;border-color:#ffcc00!important;width:100%;margin-top:.2rem;font-size:.9rem!important;}
+.nuke-btn:hover{background:#ffcc00!important;color:var(--bg)!important;}
+.war-log{background:var(--bg);border:1px solid var(--border);padding:.35rem;font-family:var(--font-mono);font-size:.58rem;color:var(--muted);height:80px;overflow-y:auto;letter-spacing:.5px;line-height:1.6;}
+.wlog-red{color:var(--red2);}
+.wlog-blue{color:var(--blue2);}
+.wlog-yellow{color:#ffcc00;}
+.wlog-white{color:var(--white);}
+
+/* BATTLEFIELD */
+.war-battlefield{flex:1;position:relative;overflow:hidden;background:var(--bg);}
+.bf-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,0,0,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,0,0,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
+.bf-territory-red{position:absolute;left:0;top:0;bottom:0;width:24%;background:rgba(255,0,0,.03);border-right:1px dashed rgba(255,0,0,.12);}
+.bf-territory-blue{position:absolute;right:0;top:0;bottom:0;width:24%;background:rgba(0,170,255,.03);border-left:1px dashed rgba(0,170,255,.12);}
+.bf-territory-lbl{position:absolute;font-family:var(--font-crt);font-size:.75rem;letter-spacing:2px;opacity:.25;top:.5rem;}
+.bf-territory-lbl.rl{left:.5rem;color:var(--red);}
+.bf-territory-lbl.bl{right:.5rem;color:var(--blue);}
+#warWorldCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+
+/* creature DOM */
+.creature-el{position:absolute;pointer-events:none;}
+.creature-sprite{display:block;image-rendering:pixelated;}
+.creature-name{font-family:var(--font-crt);font-size:.62rem;color:rgba(255,255,255,.4);white-space:nowrap;transform:translateX(-50%);margin-left:50%;letter-spacing:1px;}
+.emoji-el{position:absolute;font-size:1.3rem;pointer-events:none;user-select:none;filter:drop-shadow(0 0 3px rgba(0,0,0,.8));}
+.hp-bar-wrap{position:absolute;bottom:-5px;left:0;}
+.hp-bar-bg{width:100%;height:3px;background:rgba(0,0,0,.5);}
+.hp-bar-fill{height:100%;}
+.hp-bar-fill.red{background:var(--red);}
+.hp-bar-fill.blue{background:var(--blue);}
+.speech-bubble{position:absolute;background:rgba(20,0,0,.9);border:1px solid var(--border);font-family:var(--font-crt);font-size:.7rem;letter-spacing:1px;padding:.2rem .4rem;white-space:nowrap;pointer-events:none;transform:translateX(-50%);z-index:50;}
+
+/* NUKE */
+@keyframes nukeFlash{0%{opacity:0;}10%{opacity:1;}100%{opacity:0;}}
+.nuke-flash{position:fixed;inset:0;background:#ffcc00;z-index:9999;pointer-events:none;animation:nukeFlash .8s ease-out forwards;}
+
+/* DRAW PANEL (contact) */
 .draw-panel{background:var(--bg2);border:1px solid var(--border);padding:1.6rem;position:relative;overflow:hidden;}
-.draw-panel-header{font-family:var(--font-crt);font-size:1.1rem;letter-spacing:4px;color:var(--yellow);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;text-transform:uppercase;}
-.draw-panel-header .dot-blink{flex-shrink:0;}
+.draw-panel-header{font-family:var(--font-crt);font-size:1.1rem;letter-spacing:4px;color:var(--red);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;text-transform:uppercase;}
 .draw-instructions{font-family:var(--font-mono);font-size:.68rem;letter-spacing:1px;color:var(--muted);margin-bottom:.8rem;}
 .draw-tools{display:flex;gap:.5rem;margin-bottom:.7rem;flex-wrap:wrap;align-items:center;}
 .draw-tool-btn{font-family:var(--font-crt);font-size:.9rem;letter-spacing:2px;background:transparent;border:1px solid var(--border);color:var(--muted);padding:.2rem .7rem;cursor:pointer;transition:all .15s;}
-.draw-tool-btn:hover,.draw-tool-btn.active{background:var(--yellow);color:var(--bg);border-color:var(--yellow);}
+.draw-tool-btn:hover,.draw-tool-btn.active{background:var(--red);color:var(--bg);border-color:var(--red);}
 .draw-size-wrap{display:flex;align-items:center;gap:.4rem;}
 .draw-size-wrap label{font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:1px;}
-.draw-size-wrap input[type=range]{width:60px;accent-color:var(--red);}
 .draw-canvas-wrap{position:relative;width:100%;border:1px solid var(--border);background:var(--bg3);overflow:hidden;cursor:crosshair;}
-#drawCanvas{display:block;width:100%;image-rendering:pixelated;}
-/* creature world overlay */
-#creatureWorld{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
-.spawn-flash{position:absolute;border:1px solid rgba(255,0,0,.5);animation:spawn-ring .6s ease-out forwards;pointer-events:none;}
+#simpleDrawCanvas{display:block;width:100%;image-rendering:pixelated;}
+#simpleCreatureWorld{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.spawn-flash-simple{position:absolute;border:1px solid rgba(255,0,0,.5);animation:spawn-ring .6s ease-out forwards;pointer-events:none;}
 @keyframes spawn-ring{0%{transform:scale(.5);opacity:1;}100%{transform:scale(2.5);opacity:0;}}
-.creature-label{position:absolute;font-family:var(--font-crt);font-size:.75rem;letter-spacing:1px;color:rgba(255,100,100,.6);white-space:nowrap;pointer-events:none;transform:translateX(-50%);}
+.creature-label-simple{position:absolute;font-family:var(--font-crt);font-size:.75rem;letter-spacing:1px;color:rgba(255,100,100,.6);white-space:nowrap;pointer-events:none;transform:translateX(-50%);}
 .draw-action-row{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap;}
-.draw-action-btn{font-family:var(--font-crt);font-size:1rem;letter-spacing:2px;padding:.35rem 1rem;cursor:pointer;transition:all .15s;border:1px solid var(--border);background:transparent;color:var(--yellow);}
-.draw-action-btn:hover{background:var(--yellow);color:var(--bg);}
-.draw-action-btn.spawn-btn{background:var(--yellow);color:var(--bg);border-color:var(--yellow);box-shadow:3px 3px 0 var(--red);}
-.draw-action-btn.spawn-btn:hover{background:var(--white);box-shadow:5px 5px 0 var(--red);transform:translate(-2px,-2px);}
+.draw-action-btn{font-family:var(--font-crt);font-size:1rem;letter-spacing:2px;padding:.35rem 1rem;cursor:pointer;transition:all .15s;border:1px solid var(--border);background:transparent;color:var(--red);}
+.draw-action-btn:hover{background:var(--red);color:var(--bg);}
+.draw-action-btn.spawn-btn{background:var(--red);color:var(--bg);border-color:var(--red);box-shadow:3px 3px 0 var(--red3);}
+.draw-action-btn.spawn-btn:hover{background:var(--white);box-shadow:5px 5px 0 var(--red3);transform:translate(-2px,-2px);}
 .creature-count{font-family:var(--font-crt);font-size:.85rem;letter-spacing:2px;color:var(--muted);margin-top:.5rem;}
-.creature-count span{color:var(--yellow);}
+.creature-count span{color:var(--red);}
 
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5rem calc(var(--player-h) + 2rem);text-align:center;}
-.footer-logo{font-family:var(--font-crt);font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:clamp(4px,1.5vw,8px);color:var(--yellow);text-shadow:0 0 20px rgba(255,0,0,.4);margin-bottom:.3rem;}
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5rem calc(var(--player-h)+2rem);text-align:center;}
+.footer-logo{font-family:var(--font-crt);font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:clamp(4px,1.5vw,8px);color:var(--red);text-shadow:0 0 20px rgba(255,0,0,.4);margin-bottom:.3rem;}
 .footer-tagline{font-family:var(--font-mono);font-size:.63rem;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:1.8rem;}
 .footer-nav{display:flex;justify-content:center;gap:1.4rem;list-style:none;flex-wrap:wrap;margin-bottom:1.8rem;}
 .footer-nav a{font-family:var(--font-crt);font-size:.95rem;letter-spacing:2px;color:var(--muted);text-decoration:none;transition:color .2s;}
-.footer-nav a:hover{color:var(--yellow);}
+.footer-nav a:hover{color:var(--red);}
 .footer-copy{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);opacity:.5;letter-spacing:1px;}
-.anim-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease,box-shadow .2s,border-color .2s;}
+.anim-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease;}
 
+/* RESPONSIVE */
 @media(max-width:900px){
   #about .inner{grid-template-columns:1fr;gap:2.5rem;}
   .about-terminal{width:100%;max-width:100%;}
   .profile-grid{grid-template-columns:1fr;gap:2rem;max-width:520px;margin:0 auto;}
   .contact-static{grid-template-columns:1fr;gap:2.5rem;}
+  .war-layout{height:auto;flex-direction:column;}
+  .war-draw-panel{width:100%;flex-direction:row;flex-wrap:wrap;height:auto;border-right:none;border-bottom:1px solid var(--border);}
+  .war-canvas-wrap{width:140px;flex-shrink:0;}
+  .war-battlefield{height:360px;}
 }
 @media(max-width:640px){
   :root{--nav-h:48px;--player-h:52px;}
   .nav-links,.nav-status{display:none;}
   .nav-hamburger{display:flex;}
   nav{padding:0 1rem;}
-  .nav-logo{font-size:1.6rem;letter-spacing:3px;}
-  #hero{padding:calc(var(--nav-h) + 2rem) 1rem calc(var(--player-h) + 3.5rem);}
-  .hero-ascii{display:none;}
-  .hero-title{letter-spacing:4px;}
-  .keypad{grid-template-columns:repeat(3,40px);gap:6px;}
-  .key{width:40px;height:40px;font-size:1.2rem;}
   .music-player{padding:.4rem .85rem;gap:.65rem;}
   .music-progress,.music-vol{display:none;}
-  .music-icon{font-size:1.2rem;}
-  .music-title{font-size:.82rem;}
-  .music-status{font-size:.55rem;}
-  .music-btn{font-size:.9rem;padding:.12rem .4rem;}
   .video-grid,.platform-grid,.itch-grid{grid-template-columns:1fr;}
   .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.5rem;}
   .lightbox-prev{left:.3rem;}
   .lightbox-next{right:.3rem;}
-  .lightbox-nav{font-size:1.4rem;padding:.25rem .5rem;}
-  .lightbox-close{top:-38px;font-size:1.2rem;}
   .sec{padding:3.5rem 1rem;}
   #gallery{padding:3.5rem 1rem;}
   #about{padding:3.5rem 1rem;}
-  .contact-pill{font-size:.9rem;padding:.45rem .9rem;}
   .profile-grid{grid-template-columns:1fr;gap:2.5rem;}
-  .draw-tools{flex-wrap:wrap;}
-}
-@media(max-width:380px){
-  .hero-title{font-size:3.2rem;}
-  .sec-title{font-size:2.2rem;}
-  .btn{font-size:1rem;padding:.5rem 1.3rem;}
-  .gallery-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media(hover:hover){
   body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%23ff0000'/%3E%3Ccircle cx='10' cy='10' r='8' fill='none' stroke='%23ff0000' stroke-width='1'/%3E%3C/svg%3E") 10 10,crosshair;}
 }
 @supports(padding:max(0px)){
   .music-player{padding-bottom:max(.45rem,env(safe-area-inset-bottom));}
-  footer{padding-bottom:max(calc(var(--player-h) + 2rem),calc(var(--player-h) + env(safe-area-inset-bottom) + 1rem));}
+  footer{padding-bottom:max(calc(var(--player-h)+2rem),calc(var(--player-h)+env(safe-area-inset-bottom)+1rem));}
 }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero">SAWIE&#9742;</a>
   <ul class="nav-links">
@@ -287,6 +344,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
     <li><a href="#platforms">ช่องทาง</a></li>
     <li><a href="#works">WORKS</a></li>
     <li><a href="#gallery">GALLERY</a></li>
+    <li><a href="#creature-war">⚔ WAR</a></li>
     <li><a href="#about">ABOUT</a></li>
     <li><a href="#contact">CONTACT</a></li>
   </ul>
@@ -297,17 +355,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
 </nav>
 <div class="nav-drawer" id="navDrawer">
   <ul>
-    <li><a href="#videos"    onclick="closeDrawer()">&#9654; TRAILER</a></li>
+    <li><a href="#videos" onclick="closeDrawer()">&#9654; TRAILER</a></li>
     <li><a href="#platforms" onclick="closeDrawer()">&#9742; ช่องทางต่าง ๆ</a></li>
-    <li><a href="#works"     onclick="closeDrawer()">&#10022; WORKS</a></li>
-    <li><a href="#gallery"   onclick="closeDrawer()">&#128247; GALLERY</a></li>
-    <li><a href="#about"     onclick="closeDrawer()">// ABOUT</a></li>
-    <li><a href="#contact"   onclick="closeDrawer()">&#9742; CONTACT</a></li>
+    <li><a href="#works" onclick="closeDrawer()">&#10022; WORKS</a></li>
+    <li><a href="#gallery" onclick="closeDrawer()">&#128247; GALLERY</a></li>
+    <li><a href="#creature-war" onclick="closeDrawer()">⚔ CREATURE WAR</a></li>
+    <li><a href="#about" onclick="closeDrawer()">// ABOUT</a></li>
+    <li><a href="#contact" onclick="closeDrawer()">&#9742; CONTACT</a></li>
   </ul>
 </div>
 
-<!-- MUSIC PLAYER -->
-<div class="music-player" id="musicPlayer">
+<!-- MUSIC -->
+<div class="music-player">
   <div class="music-icon" id="musicDisc">&#9835;</div>
   <div class="music-info">
     <div class="music-title" id="musicTitle">LOADING...</div>
@@ -352,68 +411,43 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   <p class="hero-sub">&#9135;&#9135;&#9135; รวมผลงานทุกชิ้น &#9135;&#9135;&#9135;<br><em>เกม &middot; อนิเมชั่น &middot; การ์ตูน</em><br>ไว้ในที่เดียว</p>
   <div class="hero-cta">
     <a href="#videos" class="btn btn-primary">&#9654; ดูผลงาน</a>
-    <a href="#contact" class="btn btn-outline">&#9742; ติดต่อ</a>
+    <a href="#creature-war" class="btn btn-outline">⚔ CREATURE WAR</a>
   </div>
   <div class="keypad">
-    <div class="key">1<sub>&nbsp;</sub></div>
-    <div class="key">2<sub>ABC</sub></div>
-    <div class="key">3<sub>DEF</sub></div>
-    <div class="key">4<sub>GHI</sub></div>
-    <div class="key">5<sub>JKL</sub></div>
-    <div class="key">6<sub>MNO</sub></div>
-    <div class="key">7<sub>PRS</sub></div>
-    <div class="key">8<sub>TUV</sub></div>
-    <div class="key">9<sub>WXY</sub></div>
-    <div class="key">*</div>
-    <div class="key">0</div>
-    <div class="key">#</div>
+    <div class="key">1<sub>&nbsp;</sub></div><div class="key">2<sub>ABC</sub></div><div class="key">3<sub>DEF</sub></div>
+    <div class="key">4<sub>GHI</sub></div><div class="key">5<sub>JKL</sub></div><div class="key">6<sub>MNO</sub></div>
+    <div class="key">7<sub>PRS</sub></div><div class="key">8<sub>TUV</sub></div><div class="key">9<sub>WXY</sub></div>
+    <div class="key">*</div><div class="key">0</div><div class="key">#</div>
   </div>
-  <div class="scroll-hint">
-    <span>SCROLL</span>
-    <div class="scroll-line"></div>
-  </div>
+  <div class="scroll-hint"><span>SCROLL</span><div class="scroll-line"></div></div>
 </section>
-
 <div class="divider"></div>
 
-<!-- VIDEO TRAILERS -->
+<!-- VIDEOS -->
 <section class="sec" id="videos">
   <div class="sec-label">&#9654; YOUTUBE &middot; ผลงานวิดีโอ</div>
   <h2 class="sec-title">VIDEO GAME<br><span>TRAILER</span></h2>
   <div class="video-grid">
     <div class="video-card anim-in" onclick="openModal('kIL-q1vwkz0')">
-      <div class="video-thumb">
-        <img src="https://img.youtube.com/vi/kIL-q1vwkz0/hqdefault.jpg" alt="Shadow Saw Us Trailer" loading="lazy"/>
-        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
+      <div class="video-thumb"><img src="https://img.youtube.com/vi/kIL-q1vwkz0/hqdefault.jpg" alt="Sanity Shooter" loading="lazy"/><div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
       <div class="video-info"><h3>SANITY SHOOTER</h3><p>// Game Trailer</p></div>
     </div>
     <div class="video-card anim-in" onclick="openModal('z_8z27ONrbk')">
-      <div class="video-thumb">
-        <img src="https://img.youtube.com/vi/z_8z27ONrbk/hqdefault.jpg" alt="This Part of Mine Trailer" loading="lazy"/>
-        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
+      <div class="video-thumb"><img src="https://img.youtube.com/vi/z_8z27ONrbk/hqdefault.jpg" alt="This Part of Mine" loading="lazy"/><div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
       <div class="video-info"><h3>THIS PART OF MINE</h3><p>// Game Trailer</p></div>
     </div>
     <div class="video-card anim-in" onclick="openModal('23TZ718wgeA')">
-      <div class="video-thumb">
-        <img src="https://img.youtube.com/vi/23TZ718wgeA/hqdefault.jpg" alt="Sanity Shooter Trailer" loading="lazy"/>
-        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
+      <div class="video-thumb"><img src="https://img.youtube.com/vi/23TZ718wgeA/hqdefault.jpg" alt="Shadow Saw Us" loading="lazy"/><div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div></div>
       <div class="video-info"><h3>SHADOW SAW US</h3><p>// Game Trailer</p></div>
     </div>
   </div>
 </section>
-
 <div class="modal-overlay" id="videoModal" onclick="closeModal(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal()">[ CLOSE X ]</button>
-    <div class="modal-video">
-      <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <div class="modal-video"><iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
   </div>
 </div>
-
 <div class="divider"></div>
 
 <!-- PLATFORMS -->
@@ -421,56 +455,20 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   <div class="sec-label">&#9742; CHANNELS</div>
   <h2 class="sec-title">ช่องทาง<br><span>ต่าง ๆ</span></h2>
   <div class="platform-grid">
-    <a href="https://www.youtube.com/@nungu5406" target="_blank" rel="noopener" class="platform-card anim-in">
-      <div class="platform-icon">&#9654;&#65039;</div>
-      <h3>YOUTUBE</h3>
-      <p>คลิปเกมเพลย์ &middot; ผลงาน &middot; วิดีโอต่าง ๆ</p>
-      <span class="platform-tag">@NUNGU5406</span>
-    </a>
-    <a href="https://www.tiktok.com/@sawiecollection" target="_blank" rel="noopener" class="platform-card anim-in">
-      <div class="platform-icon">&#127925;</div>
-      <h3>TIKTOK</h3>
-      <p>คลิปสั้น</p>
-      <span class="platform-tag">@SAWIECOLLECTION</span>
-    </a>
-    <a href="https://discord.gg/mTnGaDhHMD" target="_blank" rel="noopener" class="platform-card anim-in">
-      <div class="platform-icon">&#128172;</div>
-      <h3>DISCORD</h3>
-      <p>คอมมูนิตี้ ชวนเล่นเกมด้วยกัน</p>
-      <span class="platform-tag">COMMUNITY</span>
-    </a>
-    <a href="https://web.facebook.com/profile.php?id=61572930213137" target="_blank" rel="noopener" class="platform-card anim-in">
-      <div class="platform-icon">&#128100;</div>
-      <h3>FACEBOOK</h3>
-      <p>ข่าวสาร อัปเดตผลงาน และโพสต์ต่าง ๆ</p>
-      <span class="platform-tag">SAWIE COLLECTION</span>
-    </a>
+    <a href="https://www.youtube.com/@nungu5406" target="_blank" rel="noopener" class="platform-card anim-in"><div class="platform-icon">&#9654;&#65039;</div><h3>YOUTUBE</h3><p>คลิปเกมเพลย์ &middot; ผลงาน &middot; วิดีโอต่าง ๆ</p><span class="platform-tag">@NUNGU5406</span></a>
+    <a href="https://www.tiktok.com/@sawiecollection" target="_blank" rel="noopener" class="platform-card anim-in"><div class="platform-icon">&#127925;</div><h3>TIKTOK</h3><p>คลิปสั้น</p><span class="platform-tag">@SAWIECOLLECTION</span></a>
+    <a href="https://discord.gg/mTnGaDhHMD" target="_blank" rel="noopener" class="platform-card anim-in"><div class="platform-icon">&#128172;</div><h3>DISCORD</h3><p>คอมมูนิตี้ ชวนเล่นเกมด้วยกัน</p><span class="platform-tag">COMMUNITY</span></a>
+    <a href="https://web.facebook.com/profile.php?id=61572930213137" target="_blank" rel="noopener" class="platform-card anim-in"><div class="platform-icon">&#128100;</div><h3>FACEBOOK</h3><p>ข่าวสาร อัปเดตผลงาน และโพสต์ต่าง ๆ</p><span class="platform-tag">SAWIE COLLECTION</span></a>
   </div>
   <div style="margin-top:3rem;">
     <div class="sec-label">&#127918; ITCH.IO &middot; ดาวน์โหลดเกม</div>
     <div class="itch-grid">
-      <a href="https://sawienoowie.itch.io/shadow-saw-us" target="_blank" rel="noopener" class="itch-card anim-in">
-        <div class="platform-icon">&#128123;</div>
-        <h3>SHADOW SAW US</h3>
-        <p>Indie Horror Fantasy</p>
-        <span class="itch-tag">&#9654; PLAY ON ITCH.IO</span>
-      </a>
-      <a href="https://sawienoowie.itch.io/this-part-of-mine" target="_blank" rel="noopener" class="itch-card anim-in">
-        <div class="platform-icon">&#10024;</div>
-        <h3>THIS PART OF MINE</h3>
-        <p>DETECTIVE GAME</p>
-        <span class="itch-tag">&#9654; PLAY ON ITCH.IO</span>
-      </a>
-      <a href="https://sawienoowie.itch.io/sanity-shooter-ring-dimension" target="_blank" rel="noopener" class="itch-card anim-in">
-        <div class="platform-icon">&#128302;</div>
-        <h3>SANITY SHOOTER</h3>
-        <p>FIRST PERSON SHOOTING, SCI-FI, FANTASY</p>
-        <span class="itch-tag">&#9654; PLAY ON ITCH.IO</span>
-      </a>
+      <a href="https://sawienoowie.itch.io/shadow-saw-us" target="_blank" rel="noopener" class="itch-card anim-in"><div class="platform-icon">&#128123;</div><h3>SHADOW SAW US</h3><p>Indie Horror Fantasy</p><span class="itch-tag">&#9654; PLAY ON ITCH.IO</span></a>
+      <a href="https://sawienoowie.itch.io/this-part-of-mine" target="_blank" rel="noopener" class="itch-card anim-in"><div class="platform-icon">&#10024;</div><h3>THIS PART OF MINE</h3><p>DETECTIVE GAME</p><span class="itch-tag">&#9654; PLAY ON ITCH.IO</span></a>
+      <a href="https://sawienoowie.itch.io/sanity-shooter-ring-dimension" target="_blank" rel="noopener" class="itch-card anim-in"><div class="platform-icon">&#128302;</div><h3>SANITY SHOOTER</h3><p>FIRST PERSON SHOOTING, SCI-FI, FANTASY</p><span class="itch-tag">&#9654; PLAY ON ITCH.IO</span></a>
     </div>
   </div>
 </section>
-
 <div class="divider"></div>
 
 <!-- WORKS -->
@@ -478,37 +476,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
   <div class="sec-label">&#10022; ผลงาน</div>
   <h2 class="sec-title">ผลงาน<br><span>อื่น ๆ</span></h2>
   <div class="video-grid">
-    <div class="video-card anim-in" onclick="openModal('2WO3TOI1ujw')">
-      <div class="video-thumb">
-        <img src="https://img.youtube.com/vi/2WO3TOI1ujw/hqdefault.jpg" alt="Animation" loading="lazy"/>
-        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
-      <div class="video-info"><h3>ANIMATION</h3><p>// ผลงานอนิเมชั่น</p></div>
-    </div>
-    <div class="video-card anim-in" onclick="openModal('Z0BmSlea9_w')">
-      <div class="video-thumb">
-        <img src="https://img.youtube.com/vi/Z0BmSlea9_w/hqdefault.jpg" alt="Shadow Saw Us OST" loading="lazy"/>
-        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
-      <div class="video-info"><h3>SHADOW SAW US</h3><p>// เพลงประกอบ OST</p></div>
-    </div>
-    <div class="video-card anim-in" onclick="openModal('9lTRHb_2ew8')">
-      <div class="video-thumb">
-        <img src="https://img.youtube.com/vi/9lTRHb_2ew8/hqdefault.jpg" alt="Sanity Shooter OST" loading="lazy"/>
-        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
-      <div class="video-info"><h3>SANITY SHOOTER</h3><p>// เพลง Sanity Shooter</p></div>
-    </div>
-    <div class="video-card anim-in" onclick="openModal('FWrGu9cLh9w')">
-      <div class="video-thumb">
-        <img src="https://img.youtube.com/vi/FWrGu9cLh9w/hqdefault.jpg" alt="Game Knowledge" loading="lazy"/>
-        <div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
-      <div class="video-info"><h3>GAME KNOWLEDGE</h3><p>// วิดีโอความรู้เกม</p></div>
-    </div>
+    <div class="video-card anim-in" onclick="openModal('2WO3TOI1ujw')"><div class="video-thumb"><img src="https://img.youtube.com/vi/2WO3TOI1ujw/hqdefault.jpg" alt="Animation" loading="lazy"/><div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div></div><div class="video-info"><h3>ANIMATION</h3><p>// ผลงานอนิเมชั่น</p></div></div>
+    <div class="video-card anim-in" onclick="openModal('Z0BmSlea9_w')"><div class="video-thumb"><img src="https://img.youtube.com/vi/Z0BmSlea9_w/hqdefault.jpg" alt="SSU OST" loading="lazy"/><div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div></div><div class="video-info"><h3>SHADOW SAW US</h3><p>// เพลงประกอบ OST</p></div></div>
+    <div class="video-card anim-in" onclick="openModal('9lTRHb_2ew8')"><div class="video-thumb"><img src="https://img.youtube.com/vi/9lTRHb_2ew8/hqdefault.jpg" alt="SS OST" loading="lazy"/><div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div></div><div class="video-info"><h3>SANITY SHOOTER</h3><p>// เพลง Sanity Shooter</p></div></div>
+    <div class="video-card anim-in" onclick="openModal('FWrGu9cLh9w')"><div class="video-thumb"><img src="https://img.youtube.com/vi/FWrGu9cLh9w/hqdefault.jpg" alt="Game Knowledge" loading="lazy"/><div class="play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0d0000"><polygon points="5,3 19,12 5,21"/></svg></div></div></div><div class="video-info"><h3>GAME KNOWLEDGE</h3><p>// วิดีโอความรู้เกม</p></div></div>
   </div>
 </section>
-
 <div class="divider"></div>
 
 <!-- GALLERY -->
@@ -520,7 +493,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
     <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </div>
-
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <div class="lightbox-inner">
     <button class="lightbox-close" onclick="closeLightbox()">[ CLOSE X ]</button>
@@ -529,17 +501,74 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
     <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1);event.stopPropagation()">&#9658;</button>
   </div>
 </div>
+<div class="divider"></div>
 
+<!-- ══════════════ CREATURE WAR ══════════════ -->
+<section id="creature-war">
+  <div class="war-header">
+    <div class="sec-label">⚔ MINI GAME</div>
+    <h2 class="sec-title" style="margin-bottom:.6rem;">CREATURE<br><span>WAR</span></h2>
+    <p style="font-family:var(--font-mono);font-size:.75rem;color:var(--muted);letter-spacing:1px;margin-bottom:.8rem;">วาดรูปแล้ว Spawn ใส่ฝั่ง 🔴 RED หรือ 🔵 BLUE — ฝ่ายสุดท้ายที่ยังมีชีวิตอยู่ชนะ!</p>
+    <div class="war-phase-bar">
+      <span class="war-phase-text" id="warPhaseDisplay">// SPAWN CREATURES TO BEGIN</span>
+      <div class="war-stats">
+        <span style="font-family:var(--font-crt);font-size:.8rem;color:rgba(255,0,0,.4);border:1px solid rgba(255,0,0,.3);padding:.1rem .4rem;">🔴 RED</span>
+        <span class="war-stat red" id="warRedCount">0 units</span>
+        <span style="color:var(--muted)">|</span>
+        <span style="font-family:var(--font-crt);font-size:.8rem;color:rgba(0,170,255,.4);border:1px solid rgba(0,170,255,.3);padding:.1rem .4rem;">🔵 BLUE</span>
+        <span class="war-stat blue" id="warBlueCount">0 units</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="war-layout">
+    <!-- DRAW PANEL -->
+    <div class="war-draw-panel">
+      <div class="panel-title">🖊 DRAW</div>
+      <div class="color-pick">
+        <div class="color-btn red active" id="warBtnRed" onclick="warSetFaction('red')">🔴 RED</div>
+        <div class="color-btn blue" id="warBtnBlue" onclick="warSetFaction('blue')">🔵 BLUE</div>
+      </div>
+      <div class="tool-row">
+        <button class="tool-btn active" id="warBtnPen" onclick="warSetTool('pen')">✏ PEN</button>
+        <button class="tool-btn" id="warBtnErase" onclick="warSetTool('erase')">◻ ERASE</button>
+      </div>
+      <div class="size-row">
+        <label>SIZE</label>
+        <input type="range" id="warBrushSize" min="2" max="18" value="5" oninput="warUpdateBrush(this.value)"/>
+        <span id="warBrushVal" style="font-family:var(--font-mono);font-size:.58rem;color:var(--muted);">5</span>
+      </div>
+      <div class="war-canvas-wrap" id="warCanvasWrap">
+        <canvas id="warDrawCanvas"></canvas>
+      </div>
+      <div class="action-row">
+        <button class="action-btn spawn-red" onclick="warSpawnCreature('red')">⚔ RED</button>
+        <button class="action-btn spawn-blue" onclick="warSpawnCreature('blue')">⚔ BLUE</button>
+      </div>
+      <div class="action-row">
+        <button class="action-btn" onclick="warClearCanvas()">[ CLR ]</button>
+        <button class="action-btn" onclick="warAutoSpawn()">[ x3 ]</button>
+      </div>
+      <button class="action-btn nuke-btn" onclick="warTriggerNuke()">☢ NUKE</button>
+      <div class="war-log" id="warLogBox"></div>
+    </div>
+
+    <!-- BATTLEFIELD -->
+    <div class="war-battlefield" id="warBattlefield">
+      <div class="bf-grid"></div>
+      <div class="bf-territory-red"><div class="bf-territory-lbl rl">RED BASE</div></div>
+      <div class="bf-territory-blue"><div class="bf-territory-lbl bl">BLUE BASE</div></div>
+      <canvas id="warWorldCanvas"></canvas>
+    </div>
+  </div>
+</section>
 <div class="divider"></div>
 
 <!-- ABOUT -->
 <div id="about">
   <div class="inner">
     <div class="about-terminal">
-      <div class="terminal-bar">
-        <span>sawie_collection.exe</span>
-        <div class="terminal-dots"><i></i><i></i><i></i></div>
-      </div>
+      <div class="terminal-bar"><span>sawie_collection.exe</span><div class="terminal-dots"><i></i><i></i><i></i></div></div>
       <div class="terminal-body">
 <span class="prompt">C:\&gt;</span> whoami<br>
 <span class="value">SAWIE COLLECTION</span><br><br>
@@ -557,69 +586,49 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
       <p><strong>Sawie Collection</strong> คือเว็บที่ตั้งใจจะรวบรวมผลงานต่าง ๆ ที่เคยทำไว้มาอยู่ที่นี่</p>
       <p>ไม่ว่าจะเป็นผลงานด้าน <strong>เกม อนิเมชั่น การ์ตูน</strong> ขอให้ทุกคนเสพผลงานทุกชิ้นอย่างมีความสุข!</p>
       <div class="about-tags">
-        <span class="about-tag">&#127918; เกม</span>
-        <span class="about-tag">&#127916; อนิเมชั่น</span>
-        <span class="about-tag">&#128444;&#65039; การ์ตูน</span>
-        <span class="about-tag">&#127925; เพลง</span>
-        <span class="about-tag">&#10022; MORE</span>
+        <span class="about-tag">&#127918; เกม</span><span class="about-tag">&#127916; อนิเมชั่น</span>
+        <span class="about-tag">&#128444;&#65039; การ์ตูน</span><span class="about-tag">&#127925; เพลง</span>
+        <span class="about-tag">⚔ CREATURE WAR</span>
       </div>
     </div>
   </div>
 </div>
-
 <div class="divider"></div>
 
-<!-- CONTACT — with creature draw panel -->
+<!-- CONTACT -->
 <section id="contact" class="sec">
   <div class="contact-static">
-
-    <!-- Left: contact info -->
     <div class="contact-info-block">
       <div class="sec-label">&#9742; CONTACT</div>
       <h2 class="sec-title">ติดต่อ<br><span>เรา</span></h2>
       <p>มีโปรเจกต์ที่อยากทำร่วมกัน<br>หรืออยากสอบถามเรื่องผลงาน<br>ยินดีรับฟังทุกเรื่องเลย!</p>
       <div class="contact-links">
-        <a href="mailto:realsawie2549@gmail.com" class="contact-pill">
-          <span class="pill-icon">&#9993;</span>
-          realsawie2549@gmail.com
-        </a>
-        <a href="tel:0958309662" class="contact-pill">
-          <span class="pill-icon">&#9742;</span>
-          095-830-9662
-        </a>
+        <a href="mailto:realsawie2549@gmail.com" class="contact-pill"><span class="pill-icon">&#9993;</span>realsawie2549@gmail.com</a>
+        <a href="tel:0958309662" class="contact-pill"><span class="pill-icon">&#9742;</span>095-830-9662</a>
       </div>
     </div>
-
-    <!-- Right: creature draw system -->
     <div class="draw-panel anim-in">
-      <div class="draw-panel-header">
-        <div class="dot-blink"></div>
-        CREATURE SPAWNER
-      </div>
+      <div class="draw-panel-header"><div class="dot-blink"></div>CREATURE SPAWNER</div>
       <p class="draw-instructions">// วาดรูปอะไรก็ได้ แล้วกด [ SPAWN ] — มันจะมีชีวิตและเดินไปเดินมา</p>
-
       <div class="draw-tools">
-        <button class="draw-tool-btn active" id="btnPen" onclick="setTool('pen')">✏ PEN</button>
-        <button class="draw-tool-btn" id="btnErase" onclick="setTool('erase')">◻ ERASE</button>
+        <button class="draw-tool-btn active" id="sBtnPen" onclick="simpleSetTool('pen')">✏ PEN</button>
+        <button class="draw-tool-btn" id="sBtnErase" onclick="simpleSetTool('erase')">◻ ERASE</button>
         <div class="draw-size-wrap">
           <label>SIZE</label>
-          <input type="range" id="brushSize" min="2" max="20" value="5" oninput="updateBrushSize(this.value)"/>
-          <span id="brushSizeVal" style="font-family:var(--font-mono);font-size:.6rem;color:var(--muted);">5</span>
+          <input type="range" id="sBrushSize" min="2" max="20" value="5" oninput="simpleUpdateBrush(this.value)"/>
+          <span id="sBrushVal" style="font-family:var(--font-mono);font-size:.6rem;color:var(--muted);">5</span>
         </div>
       </div>
-
-      <div class="draw-canvas-wrap" id="canvasWrap">
-        <canvas id="drawCanvas"></canvas>
-        <div id="creatureWorld"></div>
+      <div class="draw-canvas-wrap" id="simpleCanvasWrap">
+        <canvas id="simpleDrawCanvas"></canvas>
+        <div id="simpleCreatureWorld"></div>
       </div>
-
       <div class="draw-action-row">
-        <button class="draw-action-btn spawn-btn" onclick="spawnCreature()">[ SPAWN CREATURE ]</button>
-        <button class="draw-action-btn" onclick="clearCanvas()">[ CLEAR ]</button>
+        <button class="draw-action-btn spawn-btn" onclick="simpleSpawnCreature()">[ SPAWN CREATURE ]</button>
+        <button class="draw-action-btn" onclick="simpleClearCanvas()">[ CLEAR ]</button>
       </div>
-      <div class="creature-count">CREATURES ALIVE: <span id="creatureCountNum">0</span></div>
+      <div class="creature-count">CREATURES ALIVE: <span id="simpleCreatureCount">0</span></div>
     </div>
-
   </div>
 </section>
 
@@ -637,62 +646,56 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 1.5
       <p>เริ่มสนใจในวิดีโอเกม และสื่อสร้างสรรค์อื่น ๆ ตั้งแต่ตอน 5 ขวบเพราะได้เล่น Half-Life ปัจจุบันเลยได้ผลิตผลงานมาหลายรูปแบบเช่น <strong>เกม อนิเมชั่น และงานวาด</strong></p>
       <p>ผลงานส่วนมากจะมีแรงบันดาลใจจาก <strong>Lemon Demon</strong> ที่ถูกสร้างสรรค์โดย Neil Cicierega ในผลงานมักมี Reference จากผลงานเขาเยอะมาก</p>
       <div style="margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.45rem;">
-        <span class="about-tag">GODOT</span>
-        <span class="about-tag">BLENDER</span>
-        <span class="about-tag">PIXEL ART</span>
-        <span class="about-tag">WRITING</span>
+        <span class="about-tag">GODOT</span><span class="about-tag">BLENDER</span><span class="about-tag">PIXEL ART</span><span class="about-tag">WRITING</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">SAWIE&#9742;COLLECTION</div>
   <div class="footer-tagline">Game &middot; Animation &middot; Art &middot; &amp; More &mdash; Est. 2025</div>
   <ul class="footer-nav">
-    <li><a href="#videos">TRAILER</a></li>
-    <li><a href="#platforms">ช่องทาง</a></li>
-    <li><a href="#works">WORKS</a></li>
-    <li><a href="#gallery">GALLERY</a></li>
-    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#videos">TRAILER</a></li><li><a href="#platforms">ช่องทาง</a></li>
+    <li><a href="#works">WORKS</a></li><li><a href="#gallery">GALLERY</a></li>
+    <li><a href="#creature-war">⚔ WAR</a></li><li><a href="#about">ABOUT</a></li>
     <li><a href="#contact">CONTACT</a></li>
   </ul>
   <p class="footer-copy">&copy; 2025 Sawie Collection &middot; All Rights Reserved</p>
 </footer>
 
 <script>
-/* ══ HAMBURGER ══ */
+/* ══ NAV ══ */
 function toggleDrawer(){var h=document.getElementById('hamburger'),d=document.getElementById('navDrawer');h.classList.toggle('open');d.classList.toggle('open');}
 function closeDrawer(){document.getElementById('hamburger').classList.remove('open');document.getElementById('navDrawer').classList.remove('open');}
 document.addEventListener('click',function(e){var h=document.getElementById('hamburger'),d=document.getElementById('navDrawer');if(d.classList.contains('open')&&!d.contains(e.target)&&!h.contains(e.target))closeDrawer();});
 
-/* ══ VIDEO MODAL ══ */
+/* ══ MODAL ══ */
 function openModal(id){document.getElementById('modalIframe').src='https://www.youtube.com/embed/'+id+'?autoplay=1';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
 function closeModal(e){if(e&&e.target!==document.getElementById('videoModal')&&!(e.target.classList&&e.target.classList.contains('modal-close')))return;document.getElementById('modalIframe').src='';document.getElementById('videoModal').classList.remove('active');document.body.style.overflow='';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal({});closeLightbox();}});
 
-/* ══ SCROLL ANIMATIONS ══ */
+/* ══ SCROLL ANIMS ══ */
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='translateY(0)';obs.unobserve(en.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.anim-in').forEach(function(el){obs.observe(el);});
 
 /* ══ KEYPAD ══ */
-document.querySelectorAll('.key').forEach(function(k){k.addEventListener('pointerdown',function(){k.style.background='var(--yellow)';k.style.color='var(--bg)';});k.addEventListener('pointerup',function(){setTimeout(function(){k.style.background='';k.style.color='';},200);});});
+document.querySelectorAll('.key').forEach(function(k){k.addEventListener('pointerdown',function(){k.style.background='var(--red)';k.style.color='var(--bg)';});k.addEventListener('pointerup',function(){setTimeout(function(){k.style.background='';k.style.color='';},200);});});
 
-/* ══ MUSIC PLAYER ══ */
+/* ══ MUSIC ══ */
 var playlist=[{file:'music/track1.mp3',title:'TRACK 1'},{file:'music/track2.mp3',title:'TRACK 2'},{file:'music/track3.mp3',title:'TRACK 3'}];
-var audio=document.getElementById('bgmAudio');
+var bgmAudio=document.getElementById('bgmAudio');
 var currentTrack=0,isPlaying=false;
-audio.volume=0.4;
-function loadTrack(idx){currentTrack=((idx%playlist.length)+playlist.length)%playlist.length;audio.src=playlist[currentTrack].file;document.getElementById('musicTitle').textContent=playlist[currentTrack].title;document.getElementById('musicStatus').textContent='// TRACK '+(currentTrack+1)+' / '+playlist.length;}
-function playTrack(){audio.play().then(function(){isPlaying=true;document.getElementById('playPauseBtn').textContent='\u258C\u258C';document.getElementById('musicDisc').classList.remove('paused');document.getElementById('musicStatus').textContent='// PLAYING \u25B6';}).catch(function(){document.getElementById('musicStatus').textContent='// CLICK \u25B6 TO PLAY';});}
-function togglePlay(){if(isPlaying){audio.pause();isPlaying=false;document.getElementById('playPauseBtn').textContent='\u25B6';document.getElementById('musicDisc').classList.add('paused');document.getElementById('musicStatus').textContent='// PAUSED';}else{playTrack();}}
-function nextTrack(){loadTrack(currentTrack+1);if(isPlaying)playTrack();else audio.load();}
-function prevTrack(){loadTrack(currentTrack-1);if(isPlaying)playTrack();else audio.load();}
-function setVolume(v){audio.volume=v;}
-function seekAudio(e){var bar=document.getElementById('progressBar');var pct=e.offsetX/bar.offsetWidth;if(audio.duration)audio.currentTime=pct*audio.duration;}
-audio.addEventListener('timeupdate',function(){if(audio.duration){var pct=(audio.currentTime/audio.duration)*100;document.getElementById('progressFill').style.width=pct+'%';}});
-audio.addEventListener('ended',function(){nextTrack();playTrack();});
+bgmAudio.volume=0.4;
+function loadTrack(idx){currentTrack=((idx%playlist.length)+playlist.length)%playlist.length;bgmAudio.src=playlist[currentTrack].file;document.getElementById('musicTitle').textContent=playlist[currentTrack].title;document.getElementById('musicStatus').textContent='// TRACK '+(currentTrack+1)+' / '+playlist.length;}
+function playTrack(){bgmAudio.play().then(function(){isPlaying=true;document.getElementById('playPauseBtn').textContent='\u258C\u258C';document.getElementById('musicDisc').classList.remove('paused');document.getElementById('musicStatus').textContent='// PLAYING \u25B6';}).catch(function(){document.getElementById('musicStatus').textContent='// CLICK \u25B6 TO PLAY';});}
+function togglePlay(){if(isPlaying){bgmAudio.pause();isPlaying=false;document.getElementById('playPauseBtn').textContent='\u25B6';document.getElementById('musicDisc').classList.add('paused');document.getElementById('musicStatus').textContent='// PAUSED';}else{playTrack();}}
+function nextTrack(){loadTrack(currentTrack+1);if(isPlaying)playTrack();else bgmAudio.load();}
+function prevTrack(){loadTrack(currentTrack-1);if(isPlaying)playTrack();else bgmAudio.load();}
+function setVolume(v){bgmAudio.volume=v;}
+function seekAudio(e){var bar=document.getElementById('progressBar');var pct=e.offsetX/bar.offsetWidth;if(bgmAudio.duration)bgmAudio.currentTime=pct*bgmAudio.duration;}
+bgmAudio.addEventListener('timeupdate',function(){if(bgmAudio.duration){document.getElementById('progressFill').style.width=(bgmAudio.currentTime/bgmAudio.duration*100)+'%';}});
+bgmAudio.addEventListener('ended',function(){nextTrack();playTrack();});
 loadTrack(0);
 document.addEventListener('pointerdown',function startAudio(){if(!isPlaying)playTrack();document.removeEventListener('pointerdown',startAudio);},{once:true});
 
@@ -706,270 +709,227 @@ function lightboxNav(dir){currentPhoto=((currentPhoto+dir+photos.length)%photos.
 (function(){var sx=0;document.getElementById('lightbox').addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});document.getElementById('lightbox').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)lightboxNav(dx<0?1:-1);},{passive:true});})();
 buildGallery();
 
-/* ══════════════════════════════════════════
-   CREATURE DRAW SYSTEM
-══════════════════════════════════════════ */
-var drawCanvas = document.getElementById('drawCanvas');
-var drawCtx = drawCanvas.getContext('2d');
-var canvasWrap = document.getElementById('canvasWrap');
-var creatureWorld = document.getElementById('creatureWorld');
-var currentTool = 'pen';
-var brushSz = 5;
-var isDrawing = false;
-var lastX = 0, lastY = 0;
-var creatures = [];
-var creatureIdCounter = 0;
-var animFrame;
+/* ══════════════════════════════════════
+   CREATURE WAR GAME (Full Battle System)
+══════════════════════════════════════ */
+var warDrawCanvas=document.getElementById('warDrawCanvas');
+var warDrawCtx=warDrawCanvas.getContext('2d');
+var warCanvasWrap=document.getElementById('warCanvasWrap');
+var warBattlefield=document.getElementById('warBattlefield');
+var warWorldCanvas=document.getElementById('warWorldCanvas');
+var wCtx=warWorldCanvas.getContext('2d');
 
-/* canvas sizing */
-function resizeDrawCanvas() {
-  var W = canvasWrap.offsetWidth;
-  var H = Math.round(W * 0.55);
-  canvasWrap.style.height = H + 'px';
-  /* save existing drawing */
-  var tmp = drawCtx.getImageData(0, 0, drawCanvas.width, drawCanvas.height);
-  drawCanvas.width = W;
-  drawCanvas.height = H;
-  fillCanvasBg();
-  if (tmp.width > 0) drawCtx.putImageData(tmp, 0, 0);
+var warFaction='red';
+var warTool='pen';
+var warBrush=5;
+var warIsDrawing=false;
+var warLastX=0,warLastY=0;
+var warCreatures=[];
+var warBases={red:null,blue:null};
+var warIdCounter=0;
+var warTick=0;
+var warPhase='spawn';
+var warPlanTimer=0;
+
+var WAR_WEAPONS=['⚔','🔫','🏹','🗡','🪃','💣','🔱'];
+var WAR_HORSES=['🐴','🦄'];
+var WAR_HOUSES=['🏠','🏰','⛺','🏯'];
+var WAR_FX=['💥','✨','⚡','🔥','💢'];
+var warRedNames=['WRATH','FURY','BLAZE','DUSK','GRIM','VILE','RAZE','SCORN','DREAD','HAVOC'];
+var warBlueNames=['AZURE','STORM','FROST','TIDE','SURGE','WAVE','ZEAL','BOLT','CREST','VALE'];
+var usedWarRed=[],usedWarBlue=[];
+var warPlanPhrases={red:['ATTACK!','CHARGE!','NO MERCY','SMASH EM','KILL BLUE','FORWARD!'],blue:['HOLD LINE!','STRATEGY!','FLANK EM!','PROTECT!','ADVANCE!','STAND FIRM']};
+
+function warResizeCanvas(){
+  var W=warCanvasWrap.offsetWidth;
+  var H=Math.round(W*0.7);
+  warCanvasWrap.style.height=H+'px';
+  var tmp=warDrawCtx.getImageData(0,0,warDrawCanvas.width,warDrawCanvas.height);
+  warDrawCanvas.width=W;warDrawCanvas.height=H;
+  warFillBg();
+  if(tmp.width>0)warDrawCtx.putImageData(tmp,0,0);
 }
-function fillCanvasBg() {
-  drawCtx.fillStyle = '#1a0000';
-  drawCtx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
+function warFillBg(){
+  warDrawCtx.fillStyle='#0d0000';
+  warDrawCtx.fillRect(0,0,warDrawCanvas.width,warDrawCanvas.height);
+  warDrawCtx.strokeStyle='rgba(255,0,0,0.05)';warDrawCtx.lineWidth=1;
+  for(var x=0;x<warDrawCanvas.width;x+=20){warDrawCtx.beginPath();warDrawCtx.moveTo(x,0);warDrawCtx.lineTo(x,warDrawCanvas.height);warDrawCtx.stroke();}
+  for(var y=0;y<warDrawCanvas.height;y+=20){warDrawCtx.beginPath();warDrawCtx.moveTo(0,y);warDrawCtx.lineTo(warDrawCanvas.width,y);warDrawCtx.stroke();}
 }
+function warSetFaction(f){warFaction=f;document.getElementById('warBtnRed').classList.toggle('active',f==='red');document.getElementById('warBtnBlue').classList.toggle('active',f==='blue');}
+function warSetTool(t){warTool=t;document.getElementById('warBtnPen').classList.toggle('active',t==='pen');document.getElementById('warBtnErase').classList.toggle('active',t==='erase');warDrawCanvas.style.cursor=t==='erase'?'cell':'crosshair';}
+function warUpdateBrush(v){warBrush=parseInt(v);document.getElementById('warBrushVal').textContent=v;}
+function warClearCanvas(){warFillBg();}
 
-/* tool controls */
-function setTool(t) {
-  currentTool = t;
-  document.getElementById('btnPen').classList.toggle('active', t === 'pen');
-  document.getElementById('btnErase').classList.toggle('active', t === 'erase');
-  drawCanvas.style.cursor = t === 'erase' ? 'cell' : 'crosshair';
+function warGetPos(e){var r=warDrawCanvas.getBoundingClientRect();var sx=warDrawCanvas.width/r.width,sy=warDrawCanvas.height/r.height;var cx=e.touches?e.touches[0].clientX:e.clientX;var cy=e.touches?e.touches[0].clientY:e.clientY;return[(cx-r.left)*sx,(cy-r.top)*sy];}
+function warStartDraw(e){e.preventDefault();warIsDrawing=true;var p=warGetPos(e);warLastX=p[0];warLastY=p[1];var col=warTool==='erase'?'#0d0000':(warFaction==='red'?'#ff3030':'#30aaff');warDrawCtx.beginPath();warDrawCtx.arc(warLastX,warLastY,warBrush/2,0,Math.PI*2);warDrawCtx.fillStyle=col;warDrawCtx.fill();}
+function warDoDraw(e){if(!warIsDrawing)return;e.preventDefault();var p=warGetPos(e);var col=warTool==='erase'?'#0d0000':(warFaction==='red'?'#ff3030':'#30aaff');warDrawCtx.beginPath();warDrawCtx.moveTo(warLastX,warLastY);warDrawCtx.lineTo(p[0],p[1]);warDrawCtx.strokeStyle=col;warDrawCtx.lineWidth=warBrush;warDrawCtx.lineCap='round';warDrawCtx.lineJoin='round';warDrawCtx.stroke();warLastX=p[0];warLastY=p[1];}
+function warEndDraw(){warIsDrawing=false;}
+warDrawCanvas.addEventListener('mousedown',warStartDraw);
+warDrawCanvas.addEventListener('mousemove',warDoDraw);
+warDrawCanvas.addEventListener('mouseup',warEndDraw);
+warDrawCanvas.addEventListener('mouseleave',warEndDraw);
+warDrawCanvas.addEventListener('touchstart',warStartDraw,{passive:false});
+warDrawCanvas.addEventListener('touchmove',warDoDraw,{passive:false});
+warDrawCanvas.addEventListener('touchend',warEndDraw);
+
+function warExtractSprite(faction){
+  var W=warDrawCanvas.width,H=warDrawCanvas.height;
+  var data=warDrawCtx.getImageData(0,0,W,H).data;
+  var minX=W,minY=H,maxX=0,maxY=0,found=false;
+  for(var y=0;y<H;y++){for(var x=0;x<W;x++){var i=(y*W+x)*4;var r=data[i],g=data[i+1],b=data[i+2];var ok=false;if(faction==='red'&&r>60&&r>g*1.5&&r>b*1.5)ok=true;if(faction==='blue'&&b>60&&b>r*1.5&&g>r)ok=true;if(ok){if(x<minX)minX=x;if(x>maxX)maxX=x;if(y<minY)minY=y;if(y>maxY)maxY=y;found=true;}}}
+  if(!found)return null;
+  var pad=4;minX=Math.max(0,minX-pad);minY=Math.max(0,minY-pad);maxX=Math.min(W,maxX+pad);maxY=Math.min(H,maxY+pad);
+  var sw=maxX-minX,sh=maxY-minY;if(sw<3||sh<3)return null;
+  var MAX=60,scale=Math.min(1,MAX/Math.max(sw,sh));
+  var ow=Math.round(sw*scale),oh=Math.round(sh*scale);
+  var off=document.createElement('canvas');off.width=ow;off.height=oh;
+  var octx=off.getContext('2d');octx.drawImage(warDrawCanvas,minX,minY,sw,sh,0,0,ow,oh);
+  var id=octx.getImageData(0,0,ow,oh);var d=id.data;
+  for(var i2=0;i2<d.length;i2+=4){var ri=d[i2],gi=d[i2+1],bi=d[i2+2];var isBg=false;if(faction==='red'&&!(ri>60&&ri>gi*1.5&&ri>bi*1.5))isBg=true;if(faction==='blue'&&!(bi>60&&bi>ri*1.5&&gi>ri))isBg=true;if(isBg)d[i2+3]=0;}
+  octx.putImageData(id,0,0);
+  return{dataUrl:off.toDataURL(),w:ow,h:oh};
 }
-function updateBrushSize(v) {
-  brushSz = parseInt(v);
-  document.getElementById('brushSizeVal').textContent = v;
+function warMakeDefault(faction){
+  var off=document.createElement('canvas');off.width=32;off.height=40;var octx=off.getContext('2d');
+  var col=faction==='red'?'#ff4040':'#4080ff';
+  octx.fillStyle=col;octx.beginPath();octx.ellipse(16,20,10,14,0,0,Math.PI*2);octx.fill();
+  octx.beginPath();octx.arc(16,8,8,0,Math.PI*2);octx.fill();
+  octx.fillStyle='rgba(0,0,0,.8)';octx.beginPath();octx.arc(13,7,2,0,Math.PI*2);octx.fill();octx.beginPath();octx.arc(19,7,2,0,Math.PI*2);octx.fill();
+  return{dataUrl:off.toDataURL(),w:32,h:40};
 }
-function clearCanvas() {
-  fillCanvasBg();
+function warGetName(faction){var pool=faction==='red'?warRedNames:warBlueNames;var used=faction==='red'?usedWarRed:usedWarBlue;var avail=pool.filter(function(n){return used.indexOf(n)<0;});if(avail.length===0){used.length=0;avail=pool.slice();}var n=avail[Math.floor(Math.random()*avail.length)];used.push(n);return n+'-'+String(++warIdCounter).padStart(3,'0');}
+
+function warSpawnCreature(faction,spriteOverride){
+  var sprite=spriteOverride||warExtractSprite(faction)||warMakeDefault(faction);
+  var bfW=warBattlefield.offsetWidth,bfH=warBattlefield.offsetHeight;
+  var x,y;
+  if(faction==='red'){x=Math.random()*bfW*0.22+10;}else{x=bfW*0.78+Math.random()*bfW*0.18-sprite.w;}
+  y=Math.random()*(bfH-sprite.h-60)+20;
+  var name=warGetName(faction);
+  var maxHp=80+Math.floor(Math.random()*80);
+  var el=document.createElement('div');el.className='creature-el';el.style.cssText='left:0;top:0;will-change:transform;';
+  var img=document.createElement('img');img.src=sprite.dataUrl;img.className='creature-sprite';img.style.cssText='width:'+sprite.w+'px;height:'+sprite.h+'px;';
+  var hpWrap=document.createElement('div');hpWrap.className='hp-bar-wrap';hpWrap.style.cssText='width:'+sprite.w+'px;';
+  var hpBg=document.createElement('div');hpBg.className='hp-bar-bg';var hpFill=document.createElement('div');hpFill.className='hp-bar-fill '+faction;hpFill.style.width='100%';hpBg.appendChild(hpFill);hpWrap.appendChild(hpBg);
+  var nameEl=document.createElement('div');nameEl.className='creature-name';nameEl.textContent=name;nameEl.style.color=faction==='red'?'rgba(255,100,100,.5)':'rgba(100,180,255,.5)';
+  el.appendChild(img);el.appendChild(hpWrap);el.appendChild(nameEl);warBattlefield.appendChild(el);
+  var c={id:warIdCounter,el:el,img:img,hpFill:hpFill,faction:faction,name:name,x:x,y:y,vx:(Math.random()-.5)*.8,vy:(Math.random()-.5)*.4,dir:faction==='red'?1:-1,w:sprite.w,h:sprite.h,hp:maxHp,maxHp:maxHp,alive:true,state:'idle',weapon:null,mountedHorse:null,bobPhase:Math.random()*Math.PI*2,actionTimer:0,speechTimer:0,speechEl:null,planCooldown:0,attackCooldown:0,isGuard:false};
+  warCreatures.push(c);warUpdateStats();warAddLog(faction,'['+name+'] spawned');warCheckPhase();return c;
 }
+function warAutoSpawn(){var fs=['red','red','red','blue','blue','blue'];for(var i=0;i<fs.length;i++){(function(f,delay){setTimeout(function(){warSpawnCreature(f);},delay);})(fs[i],i*120);}}
 
-/* drawing */
-function getPos(e) {
-  var r = drawCanvas.getBoundingClientRect();
-  var scaleX = drawCanvas.width / r.width;
-  var scaleY = drawCanvas.height / r.height;
-  var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-  var clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  return [(clientX - r.left) * scaleX, (clientY - r.top) * scaleY];
+function warBuildBase(faction){
+  if(warBases[faction])return;
+  var bfW=warBattlefield.offsetWidth,bfH=warBattlefield.offsetHeight;
+  var house=WAR_HOUSES[Math.floor(Math.random()*WAR_HOUSES.length)];
+  var x=faction==='red'?bfW*0.05:bfW*0.88,y=bfH*0.4;
+  var el=document.createElement('div');el.className='emoji-el';el.style.cssText='left:'+x+'px;top:'+y+'px;font-size:2.2rem;z-index:5;';el.textContent=house;warBattlefield.appendChild(el);
+  warBases[faction]={el:el,x:x,y:y};warAddLog(faction,'['+faction.toUpperCase()+'] built base '+house);
 }
-function startDraw(e) {
-  e.preventDefault();
-  isDrawing = true;
-  var p = getPos(e);
-  lastX = p[0]; lastY = p[1];
-  drawCtx.beginPath();
-  drawCtx.arc(lastX, lastY, brushSz / 2, 0, Math.PI * 2);
-  drawCtx.fillStyle = currentTool === 'erase' ? '#1a0000' : '#ff2020';
-  drawCtx.fill();
-}
-function doDraw(e) {
-  if (!isDrawing) return;
-  e.preventDefault();
-  var p = getPos(e);
-  drawCtx.beginPath();
-  drawCtx.moveTo(lastX, lastY);
-  drawCtx.lineTo(p[0], p[1]);
-  drawCtx.strokeStyle = currentTool === 'erase' ? '#1a0000' : '#ff2020';
-  drawCtx.lineWidth = brushSz;
-  drawCtx.lineCap = 'round';
-  drawCtx.lineJoin = 'round';
-  drawCtx.stroke();
-  lastX = p[0]; lastY = p[1];
-}
-function endDraw() { isDrawing = false; }
+function warSpawnEmojiAt(text,x,y,dur){var el=document.createElement('div');el.className='emoji-el';el.style.cssText='left:'+x+'px;top:'+y+'px;z-index:20;transition:all '+dur+'ms ease-out;font-size:1.2rem;';el.textContent=text;warBattlefield.appendChild(el);setTimeout(function(){el.style.top=(y-30)+'px';el.style.opacity='0';},50);setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},dur+100);}
+function warShowSpeech(c,text){if(c.speechEl&&c.speechEl.parentNode)c.speechEl.parentNode.removeChild(c.speechEl);var el=document.createElement('div');el.className='speech-bubble';el.style.borderColor=c.faction==='red'?'rgba(255,0,0,.5)':'rgba(0,150,255,.5)';el.style.color=c.faction==='red'?'rgba(255,80,80,.9)':'rgba(80,180,255,.9)';el.textContent=text;warBattlefield.appendChild(el);c.speechEl=el;c.speechTimer=100;}
+function warEquipWeapon(c){if(!c.weapon)c.weapon=WAR_WEAPONS[Math.floor(Math.random()*WAR_WEAPONS.length)];}
+function warEquipHorse(c){if(!c.mountedHorse&&Math.random()<0.25){c.mountedHorse=WAR_HORSES[Math.floor(Math.random()*WAR_HORSES.length)];warAddLog(c.faction,'['+c.name+'] mounted '+c.mountedHorse+'!');}}
+function warDoAttack(a,d){if(!a.alive||!d.alive)return;var dmg=8+Math.floor(Math.random()*18)+(a.mountedHorse?10:0);d.hp-=dmg;d.hpFill.style.width=Math.max(0,d.hp/d.maxHp*100)+'%';warSpawnEmojiAt(WAR_FX[Math.floor(Math.random()*WAR_FX.length)],d.x,d.y-10,600);if(d.hp<=0)warKill(d,a);}
+function warKill(c,killer){c.alive=false;c.el.style.opacity='0';c.el.style.transition='opacity .4s';if(c.speechEl&&c.speechEl.parentNode)c.speechEl.parentNode.removeChild(c.speechEl);setTimeout(function(){if(c.el.parentNode)c.el.parentNode.removeChild(c.el);},500);warCreatures=warCreatures.filter(function(x){return x.id!==c.id;});warAddLog(c.faction,'['+c.name+'] killed by '+(killer?'['+killer.name+']':'NUKE'));warSpawnEmojiAt('💀',c.x,c.y,1200);warUpdateStats();warCheckPhase();}
+function warGetEnemies(f){return warCreatures.filter(function(c){return c.alive&&c.faction!==f;});}
+function warGetAllies(f){return warCreatures.filter(function(c){return c.alive&&c.faction===f;});}
+function warNearest(c,list){var best=null,bestD=Infinity;list.forEach(function(t){var dx=t.x-c.x,dy=t.y-c.y,d=Math.sqrt(dx*dx+dy*dy);if(d<bestD){bestD=d;best=t;}});return{target:best,dist:bestD};}
+function warMoveTo(c,tx,ty,spd){var dx=tx-c.x,dy=ty-c.y,d=Math.sqrt(dx*dx+dy*dy);if(d<2)return;var s=spd||(c.mountedHorse?2:1.1);c.x+=dx/d*s;c.y+=dy/d*s;c.dir=dx>0?1:-1;}
+function warWander(c){c.vx+=(Math.random()-.5)*.3;c.vy+=(Math.random()-.5)*.2;var s=Math.sqrt(c.vx*c.vx+c.vy*c.vy);if(s>0.8){c.vx*=0.8/s;c.vy*=0.8/s;}c.x+=c.vx;c.y+=c.vy;c.dir=c.vx>0?1:-1;}
+function warClamp(c,bfW,bfH){if(c.x<0){c.x=0;c.vx=Math.abs(c.vx);}if(c.x>bfW-c.w){c.x=bfW-c.w;c.vx=-Math.abs(c.vx);}if(c.y<0){c.y=0;c.vy=Math.abs(c.vy);}if(c.y>bfH-c.h-20){c.y=bfH-c.h-20;c.vy=-Math.abs(c.vy);}}
+function warRenderCreature(c){if(!c.alive)return;var bob=Math.sin(c.bobPhase)*2;c.el.style.transform='translate3d('+Math.round(c.x)+'px,'+Math.round(c.y+bob)+'px,0)';c.img.style.transform=c.dir<0?'scaleX(-1)':'scaleX(1)';if(c.weapon&&warPhase==='war'){var wx=c.x+(c.dir>0?c.w+2:-14),wy=c.y+c.h/2-8;wCtx.font='14px serif';wCtx.save();if(c.dir<0){wCtx.scale(-1,1);wx=-wx-14;}wCtx.fillText(c.weapon,wx,wy);wCtx.restore();}if(c.mountedHorse){wCtx.font='18px serif';wCtx.fillText(c.mountedHorse,c.x,c.y+c.h+2);}}
 
-drawCanvas.addEventListener('mousedown', startDraw);
-drawCanvas.addEventListener('mousemove', doDraw);
-drawCanvas.addEventListener('mouseup', endDraw);
-drawCanvas.addEventListener('mouseleave', endDraw);
-drawCanvas.addEventListener('touchstart', startDraw, {passive:false});
-drawCanvas.addEventListener('touchmove', doDraw, {passive:false});
-drawCanvas.addEventListener('touchend', endDraw);
+function warCheckPhase(){var rc=warGetAllies('red').length,bc=warGetAllies('blue').length;if(warPhase==='spawn'&&rc>0&&bc>0){warPhase='plan';warPlanTimer=0;warAddLog('white','// PLANNING PHASE');}}
+function warCheckWin(){var ra=warGetAllies('red').length,ba=warGetAllies('blue').length;if(ra===0&&ba===0){warPhase='spawn';warAddLog('white','DRAW! All perished.');document.getElementById('warPhaseDisplay').textContent='// DRAW — SPAWN NEW CREATURES';}else if(ra===0){warPhase='spawn';warAddLog('blue','🔵 BLUE WINS!');document.getElementById('warPhaseDisplay').textContent='// 🔵 BLUE FACTION WINS!';warBases={red:null,blue:null};}else if(ba===0){warPhase='spawn';warAddLog('red','🔴 RED WINS!');document.getElementById('warPhaseDisplay').textContent='// 🔴 RED FACTION WINS!';warBases={red:null,blue:null};}}
+function warUpdateStats(){document.getElementById('warRedCount').textContent=warGetAllies('red').length+' units';document.getElementById('warBlueCount').textContent=warGetAllies('blue').length+' units';}
+function warAddLog(faction,msg){var box=document.getElementById('warLogBox');var line=document.createElement('div');line.className=faction==='red'?'wlog-red':faction==='blue'?'wlog-blue':faction==='white'?'wlog-white':'wlog-yellow';line.textContent=msg;box.appendChild(line);box.scrollTop=box.scrollHeight;if(box.children.length>50)box.removeChild(box.firstChild);}
 
-/* ── SPAWN CREATURE ── */
-/* Extract drawn silhouette from canvas as small sprite dataURL */
-function extractSprite() {
-  var W = drawCanvas.width, H = drawCanvas.height;
-  var data = drawCtx.getImageData(0, 0, W, H).data;
-  /* find bounding box of non-background pixels */
-  var minX = W, minY = H, maxX = 0, maxY = 0;
-  var found = false;
-  for (var y = 0; y < H; y++) {
-    for (var x = 0; x < W; x++) {
-      var i = (y * W + x) * 4;
-      /* background is #1a0000 = r26 g0 b0 — check if r > 40 or g > 10 or b > 10 */
-      var r = data[i], g = data[i+1], b = data[i+2];
-      if (r > 60 || g > 10 || b > 10) {
-        if (x < minX) minX = x;
-        if (x > maxX) maxX = x;
-        if (y < minY) minY = y;
-        if (y > maxY) maxY = y;
-        found = true;
-      }
-    }
-  }
-  if (!found) return null;
-  var pad = 4;
-  minX = Math.max(0, minX - pad); minY = Math.max(0, minY - pad);
-  maxX = Math.min(W, maxX + pad); maxY = Math.min(H, maxY + pad);
-  var sw = maxX - minX, sh = maxY - minY;
-  if (sw < 3 || sh < 3) return null;
+function warTriggerNuke(){var flash=document.createElement('div');flash.className='nuke-flash';document.body.appendChild(flash);setTimeout(function(){if(flash.parentNode)flash.parentNode.removeChild(flash);},900);warAddLog('yellow','☢ NUKE! ALL ELIMINATED.');warCreatures.slice().forEach(function(c){warKill(c,null);});warCreatures=[];if(warBases.red&&warBases.red.el.parentNode)warBases.red.el.parentNode.removeChild(warBases.red.el);if(warBases.blue&&warBases.blue.el.parentNode)warBases.blue.el.parentNode.removeChild(warBases.blue.el);warBases={red:null,blue:null};document.querySelectorAll('#warBattlefield .emoji-el,.speech-bubble').forEach(function(el){if(el.parentNode)el.parentNode.removeChild(el);});warPhase='spawn';document.getElementById('warPhaseDisplay').textContent='// ☢ NUKED — SPAWN NEW CREATURES';warUpdateStats();}
 
-  /* render to small offscreen canvas, scale to max 80px */
-  var MAX = 80;
-  var scale = Math.min(1, MAX / Math.max(sw, sh));
-  var ow = Math.round(sw * scale), oh = Math.round(sh * scale);
-  var off = document.createElement('canvas');
-  off.width = ow; off.height = oh;
-  var octx = off.getContext('2d');
-  octx.drawImage(drawCanvas, minX, minY, sw, sh, 0, 0, ow, oh);
-  return {dataUrl: off.toDataURL(), w: ow, h: oh};
-}
+/* WAR GAME LOOP */
+function warGameLoop(){
+  warTick++;
+  var bfW=warBattlefield.offsetWidth,bfH=warBattlefield.offsetHeight;
+  if(warWorldCanvas.width!==bfW||warWorldCanvas.height!==bfH){warWorldCanvas.width=bfW;warWorldCanvas.height=bfH;}
+  wCtx.clearRect(0,0,bfW,bfH);
 
-/* creature names */
-var creatureNames = [
-  'THING','BLOB','CRAWLER','GHOUL','ENTITY','SPECTER',
-  'WRAITH','ABERRATION','SHADOW','ANOMALY','SPECIMEN','UNIT'
-];
-
-function spawnCreature() {
-  var sprite = extractSprite();
-  if (!sprite) {
-    /* flash the canvas border red if nothing drawn */
-    var wrap = document.getElementById('canvasWrap');
-    wrap.style.borderColor = '#ff0000';
-    wrap.style.boxShadow = '0 0 20px rgba(255,0,0,.6)';
-    setTimeout(function(){wrap.style.borderColor='';wrap.style.boxShadow='';}, 500);
-    return;
-  }
-
-  var world = creatureWorld;
-  var wW = world.offsetWidth, wH = world.offsetHeight;
-
-  /* spawn flash ring */
-  var flash = document.createElement('div');
-  flash.className = 'spawn-flash';
-  var fx = Math.random() * (wW - 40), fy = Math.random() * (wH - 40);
-  flash.style.cssText = 'left:'+fx+'px;top:'+fy+'px;width:40px;height:40px;border-radius:50%;';
-  world.appendChild(flash);
-  setTimeout(function(){if(flash.parentNode)flash.parentNode.removeChild(flash);}, 700);
-
-  var id = ++creatureIdCounter;
-  var name = creatureNames[Math.floor(Math.random()*creatureNames.length)] + '-' + String(id).padStart(3,'0');
-
-  /* creature DOM */
-  var el = document.createElement('div');
-  el.style.cssText = 'position:absolute;pointer-events:none;';
-
-  var img = document.createElement('img');
-  img.src = sprite.dataUrl;
-  img.style.cssText = 'display:block;width:'+sprite.w+'px;height:'+sprite.h+'px;image-rendering:pixelated;filter:hue-rotate(0deg) saturate(1.2);';
-
-  var lbl = document.createElement('div');
-  lbl.className = 'creature-label';
-  lbl.textContent = name;
-  lbl.style.cssText = 'top:'+(sprite.h+2)+'px;left:'+(sprite.w/2)+'px;';
-
-  el.appendChild(img);
-  el.appendChild(lbl);
-  world.appendChild(el);
-
-  /* physics state */
-  var startX = fx, startY = fy;
-  var creature = {
-    id: id,
-    el: el,
-    img: img,
-    w: sprite.w,
-    h: sprite.h,
-    x: startX,
-    y: startY,
-    vx: (Math.random() - 0.5) * 1.2,
-    vy: (Math.random() - 0.5) * 0.6,
-    dir: 1, /* 1=right -1=left */
-    bobPhase: Math.random() * Math.PI * 2,
-    bobAmp: 2 + Math.random() * 4,
-    bobSpeed: 0.04 + Math.random() * 0.03,
-    wanderTimer: 0,
-    wanderInterval: 80 + Math.floor(Math.random() * 120),
-    alive: true
-  };
-  creatures.push(creature);
-  updateCreatureCount();
-  if (creatures.length === 1) startCreatureLoop();
-}
-
-function updateCreatureCount() {
-  document.getElementById('creatureCountNum').textContent = creatures.filter(function(c){return c.alive;}).length;
-}
-
-var loopRunning = false;
-function startCreatureLoop() {
-  if (loopRunning) return;
-  loopRunning = true;
-  function loop() {
-    if (creatures.length === 0) { loopRunning = false; return; }
-    var world = creatureWorld;
-    var wW = world.offsetWidth, wH = world.offsetHeight;
-    creatures.forEach(function(c) {
-      if (!c.alive) return;
-      c.wanderTimer++;
-      if (c.wanderTimer >= c.wanderInterval) {
-        c.wanderTimer = 0;
-        c.vx += (Math.random() - 0.5) * 0.8;
-        c.vy += (Math.random() - 0.5) * 0.4;
-        /* clamp speed */
-        var spd = Math.sqrt(c.vx*c.vx + c.vy*c.vy);
-        if (spd > 1.8) { c.vx *= 1.8/spd; c.vy *= 1.8/spd; }
-        if (spd < 0.3) { c.vx *= 1.5; c.vy *= 1.5; }
-        c.wanderInterval = 80 + Math.floor(Math.random() * 120);
-      }
-      c.bobPhase += c.bobSpeed;
-      var bob = Math.sin(c.bobPhase) * c.bobAmp;
-      c.x += c.vx;
-      c.y += c.vy + bob * 0.08;
-      /* flip direction */
-      if (c.vx > 0.1) c.dir = 1;
-      else if (c.vx < -0.1) c.dir = -1;
-      /* bounce off walls */
-      if (c.x < 0) { c.x = 0; c.vx = Math.abs(c.vx); }
-      if (c.x > wW - c.w) { c.x = wW - c.w; c.vx = -Math.abs(c.vx); }
-      if (c.y < 0) { c.y = 0; c.vy = Math.abs(c.vy) * 0.5; }
-      if (c.y > wH - c.h - 16) { c.y = wH - c.h - 16; c.vy = -Math.abs(c.vy) * 0.5; }
-      /* apply */
-      c.el.style.transform = 'translate('+c.x+'px,'+c.y+'px)';
-      c.img.style.transform = (c.dir < 0 ? 'scaleX(-1)' : '') + ' translateY('+bob+'px)';
+  if(warPhase==='spawn'){
+    warCreatures.forEach(function(c){c.bobPhase+=0.05;warWander(c);warClamp(c,bfW,bfH);warRenderCreature(c);});
+  } else if(warPhase==='plan'){
+    warPlanTimer++;
+    document.getElementById('warPhaseDisplay').textContent='// PLANNING — T:'+warPlanTimer;
+    if(warPlanTimer===1){warBuildBase('red');warBuildBase('blue');var allUnits=warCreatures;allUnits.forEach(function(u,idx){u.isGuard=idx<Math.floor(allUnits.length/3);});}
+    warCreatures.forEach(function(c){c.planCooldown--;if(c.planCooldown<=0){c.planCooldown=80+Math.floor(Math.random()*100);var ph=warPlanPhrases[c.faction];warShowSpeech(c,ph[Math.floor(Math.random()*ph.length)]);}warWander(c);var hx=c.faction==='red'?bfW*0.12:bfW*0.88;if(Math.abs(c.x-hx)>bfW*0.25)warMoveTo(c,hx,c.y,.4);warClamp(c,bfW,bfH);warRenderCreature(c);});
+    if(warPlanTimer>=180){warPhase='war';warAddLog('white','⚔ WAR BEGINS!');document.getElementById('warPhaseDisplay').textContent='// ⚔ WAR PHASE';warCreatures.forEach(function(c){warEquipWeapon(c);warEquipHorse(c);c.planCooldown=0;if(c.speechEl&&c.speechEl.parentNode)c.speechEl.parentNode.removeChild(c.speechEl);c.speechEl=null;});}
+  } else if(warPhase==='war'){
+    warCreatures.forEach(function(c){
+      if(!c.alive)return;
+      c.attackCooldown=Math.max(0,c.attackCooldown-1);c.bobPhase+=0.06;
+      var enemies=warGetEnemies(c.faction);var res=warNearest(c,enemies);
+      if(enemies.length===0){var base=warBases[c.faction];if(base)warMoveTo(c,base.x+30+Math.random()*30,base.y+Math.random()*30,.4);else warWander(c);}
+      else if(c.isGuard){var base=warBases[c.faction];if(base){var dd=Math.sqrt(Math.pow(c.x-base.x,2)+Math.pow(c.y-base.y,2));if(dd>80)warMoveTo(c,base.x+(c.faction==='red'?40:-40),base.y,.6);else{c.vx*=.8;c.vy*=.8;}}if(res.dist<60&&c.attackCooldown===0){warDoAttack(c,res.target);c.attackCooldown=50;warEquipWeapon(c);}}
+      else{if(res.dist>50){warMoveTo(c,res.target.x,res.target.y,c.mountedHorse?2.2:1.3);}else{if(c.attackCooldown===0&&res.target&&res.target.alive){warDoAttack(c,res.target);c.attackCooldown=40+Math.floor(Math.random()*20);}}c.speechTimer--;if(c.speechTimer<=0){if(Math.random()<.02){var ww=['CHARGE!','AAARGH!','FIGHT!','🔥','⚡'];warShowSpeech(c,ww[Math.floor(Math.random()*ww.length)]);c.speechTimer=80;}}}
+      warClamp(c,bfW,bfH);warRenderCreature(c);
     });
-    requestAnimationFrame(loop);
+    warCreatures.forEach(function(c){if(c.speechEl){c.speechTimer--;if(c.speechTimer<=0){if(c.speechEl.parentNode)c.speechEl.parentNode.removeChild(c.speechEl);c.speechEl=null;}else{c.speechEl.style.left=(c.x+c.w/2)+'px';c.speechEl.style.top=(c.y-18)+'px';}}});
+    warCheckWin();
   }
-  requestAnimationFrame(loop);
+  requestAnimationFrame(warGameLoop);
 }
 
-/* init canvas */
-window.addEventListener('load', function() {
-  resizeDrawCanvas();
-  fillCanvasBg();
-  /* draw faint grid hint */
-  drawCtx.strokeStyle = 'rgba(255,0,0,0.06)';
-  drawCtx.lineWidth = 1;
-  for (var x = 0; x < drawCanvas.width; x += 24) {
-    drawCtx.beginPath(); drawCtx.moveTo(x,0); drawCtx.lineTo(x,drawCanvas.height); drawCtx.stroke();
-  }
-  for (var y = 0; y < drawCanvas.height; y += 24) {
-    drawCtx.beginPath(); drawCtx.moveTo(0,y); drawCtx.lineTo(drawCanvas.width,y); drawCtx.stroke();
-  }
+/* ══════════════════════════════
+   SIMPLE CREATURE SPAWNER (Contact)
+══════════════════════════════ */
+var simpleDrawCanvas=document.getElementById('simpleDrawCanvas');
+var simpleDrawCtx=simpleDrawCanvas.getContext('2d');
+var simpleCanvasWrap=document.getElementById('simpleCanvasWrap');
+var simpleWorld=document.getElementById('simpleCreatureWorld');
+var simpleTool='pen';
+var simpleBrush=5;
+var simpleIsDrawing=false;
+var simpleLastX=0,simpleLastY=0;
+var simpleCreatures=[];
+var simpleIdCounter=0;
+var simpleLoopRunning=false;
+var simpleNames=['THING','BLOB','CRAWLER','GHOUL','ENTITY','SPECTER','WRAITH','ANOMALY','SPECIMEN'];
+
+function simpleResizeCanvas(){var W=simpleCanvasWrap.offsetWidth;var H=Math.round(W*0.55);simpleCanvasWrap.style.height=H+'px';var tmp=simpleDrawCtx.getImageData(0,0,simpleDrawCanvas.width,simpleDrawCanvas.height);simpleDrawCanvas.width=W;simpleDrawCanvas.height=H;simpleFillBg();if(tmp.width>0)simpleDrawCtx.putImageData(tmp,0,0);}
+function simpleFillBg(){simpleDrawCtx.fillStyle='#1a0000';simpleDrawCtx.fillRect(0,0,simpleDrawCanvas.width,simpleDrawCanvas.height);simpleDrawCtx.strokeStyle='rgba(255,0,0,0.06)';simpleDrawCtx.lineWidth=1;for(var x=0;x<simpleDrawCanvas.width;x+=24){simpleDrawCtx.beginPath();simpleDrawCtx.moveTo(x,0);simpleDrawCtx.lineTo(x,simpleDrawCanvas.height);simpleDrawCtx.stroke();}for(var y=0;y<simpleDrawCanvas.height;y+=24){simpleDrawCtx.beginPath();simpleDrawCtx.moveTo(0,y);simpleDrawCtx.lineTo(simpleDrawCanvas.width,y);simpleDrawCtx.stroke();}}
+function simpleSetTool(t){simpleTool=t;document.getElementById('sBtnPen').classList.toggle('active',t==='pen');document.getElementById('sBtnErase').classList.toggle('active',t==='erase');simpleDrawCanvas.style.cursor=t==='erase'?'cell':'crosshair';}
+function simpleUpdateBrush(v){simpleBrush=parseInt(v);document.getElementById('sBrushVal').textContent=v;}
+function simpleClearCanvas(){simpleFillBg();}
+function simpleGetPos(e){var r=simpleDrawCanvas.getBoundingClientRect();var sx=simpleDrawCanvas.width/r.width,sy=simpleDrawCanvas.height/r.height;var cx=e.touches?e.touches[0].clientX:e.clientX;var cy=e.touches?e.touches[0].clientY:e.clientY;return[(cx-r.left)*sx,(cy-r.top)*sy];}
+function simpleStartDraw(e){e.preventDefault();simpleIsDrawing=true;var p=simpleGetPos(e);simpleLastX=p[0];simpleLastY=p[1];simpleDrawCtx.beginPath();simpleDrawCtx.arc(simpleLastX,simpleLastY,simpleBrush/2,0,Math.PI*2);simpleDrawCtx.fillStyle=simpleTool==='erase'?'#1a0000':'#ff2020';simpleDrawCtx.fill();}
+function simpleDoDraw(e){if(!simpleIsDrawing)return;e.preventDefault();var p=simpleGetPos(e);simpleDrawCtx.beginPath();simpleDrawCtx.moveTo(simpleLastX,simpleLastY);simpleDrawCtx.lineTo(p[0],p[1]);simpleDrawCtx.strokeStyle=simpleTool==='erase'?'#1a0000':'#ff2020';simpleDrawCtx.lineWidth=simpleBrush;simpleDrawCtx.lineCap='round';simpleDrawCtx.lineJoin='round';simpleDrawCtx.stroke();simpleLastX=p[0];simpleLastY=p[1];}
+function simpleEndDraw(){simpleIsDrawing=false;}
+simpleDrawCanvas.addEventListener('mousedown',simpleStartDraw);simpleDrawCanvas.addEventListener('mousemove',simpleDoDraw);simpleDrawCanvas.addEventListener('mouseup',simpleEndDraw);simpleDrawCanvas.addEventListener('mouseleave',simpleEndDraw);simpleDrawCanvas.addEventListener('touchstart',simpleStartDraw,{passive:false});simpleDrawCanvas.addEventListener('touchmove',simpleDoDraw,{passive:false});simpleDrawCanvas.addEventListener('touchend',simpleEndDraw);
+
+function simpleExtractSprite(){var W=simpleDrawCanvas.width,H=simpleDrawCanvas.height;var data=simpleDrawCtx.getImageData(0,0,W,H).data;var minX=W,minY=H,maxX=0,maxY=0,found=false;for(var y=0;y<H;y++){for(var x=0;x<W;x++){var i=(y*W+x)*4;if(data[i]>60||data[i+1]>10||data[i+2]>10){if(x<minX)minX=x;if(x>maxX)maxX=x;if(y<minY)minY=y;if(y>maxY)maxY=y;found=true;}}}if(!found)return null;var pad=4;minX=Math.max(0,minX-pad);minY=Math.max(0,minY-pad);maxX=Math.min(W,maxX+pad);maxY=Math.min(H,maxY+pad);var sw=maxX-minX,sh=maxY-minY;if(sw<3||sh<3)return null;var MAX=80,scale=Math.min(1,MAX/Math.max(sw,sh));var ow=Math.round(sw*scale),oh=Math.round(sh*scale);var off=document.createElement('canvas');off.width=ow;off.height=oh;off.getContext('2d').drawImage(simpleDrawCanvas,minX,minY,sw,sh,0,0,ow,oh);return{dataUrl:off.toDataURL(),w:ow,h:oh};}
+function simpleSpawnCreature(){
+  var sprite=simpleExtractSprite();
+  if(!sprite){var w=document.getElementById('simpleCanvasWrap');w.style.borderColor='#ff0000';w.style.boxShadow='0 0 20px rgba(255,0,0,.6)';setTimeout(function(){w.style.borderColor='';w.style.boxShadow='';},500);return;}
+  var wW=simpleWorld.offsetWidth,wH=simpleWorld.offsetHeight;
+  var flash=document.createElement('div');flash.className='spawn-flash-simple';var fx=Math.random()*(wW-40),fy=Math.random()*(wH-40);flash.style.cssText='left:'+fx+'px;top:'+fy+'px;width:40px;height:40px;border-radius:50%;';simpleWorld.appendChild(flash);setTimeout(function(){if(flash.parentNode)flash.parentNode.removeChild(flash);},700);
+  var id=++simpleIdCounter;var name=simpleNames[Math.floor(Math.random()*simpleNames.length)]+'-'+String(id).padStart(3,'0');
+  var el=document.createElement('div');el.style.cssText='position:absolute;pointer-events:none;';
+  var img=document.createElement('img');img.src=sprite.dataUrl;img.style.cssText='display:block;width:'+sprite.w+'px;height:'+sprite.h+'px;image-rendering:pixelated;';
+  var lbl=document.createElement('div');lbl.className='creature-label-simple';lbl.textContent=name;lbl.style.cssText='top:'+(sprite.h+2)+'px;left:'+(sprite.w/2)+'px;';
+  el.appendChild(img);el.appendChild(lbl);simpleWorld.appendChild(el);
+  var c={id:id,el:el,img:img,w:sprite.w,h:sprite.h,x:fx,y:fy,vx:(Math.random()-.5)*1.2,vy:(Math.random()-.5)*.6,dir:1,bobPhase:Math.random()*Math.PI*2,bobAmp:2+Math.random()*4,bobSpeed:0.04+Math.random()*0.03,wanderTimer:0,wanderInterval:80+Math.floor(Math.random()*120),alive:true};
+  simpleCreatures.push(c);document.getElementById('simpleCreatureCount').textContent=simpleCreatures.filter(function(x){return x.alive;}).length;if(simpleCreatures.length===1)simpleStartLoop();
+}
+function simpleStartLoop(){if(simpleLoopRunning)return;simpleLoopRunning=true;function loop(){if(simpleCreatures.length===0){simpleLoopRunning=false;return;}var wW=simpleWorld.offsetWidth,wH=simpleWorld.offsetHeight;simpleCreatures.forEach(function(c){if(!c.alive)return;c.wanderTimer++;if(c.wanderTimer>=c.wanderInterval){c.wanderTimer=0;c.vx+=(Math.random()-.5)*.8;c.vy+=(Math.random()-.5)*.4;var s=Math.sqrt(c.vx*c.vx+c.vy*c.vy);if(s>1.8){c.vx*=1.8/s;c.vy*=1.8/s;}if(s<0.3){c.vx*=1.5;c.vy*=1.5;}c.wanderInterval=80+Math.floor(Math.random()*120);}c.bobPhase+=c.bobSpeed;var bob=Math.sin(c.bobPhase)*c.bobAmp;c.x+=c.vx;c.y+=c.vy+bob*.08;if(c.vx>0.1)c.dir=1;else if(c.vx<-0.1)c.dir=-1;if(c.x<0){c.x=0;c.vx=Math.abs(c.vx);}if(c.x>wW-c.w){c.x=wW-c.w;c.vx=-Math.abs(c.vx);}if(c.y<0){c.y=0;c.vy=Math.abs(c.vy)*.5;}if(c.y>wH-c.h-16){c.y=wH-c.h-16;c.vy=-Math.abs(c.vy)*.5;}c.el.style.transform='translate('+c.x+'px,'+c.y+'px)';c.img.style.transform=(c.dir<0?'scaleX(-1)':'')+' translateY('+bob+'px)';});requestAnimationFrame(loop);}requestAnimationFrame(loop);}
+
+/* ══ INIT ══ */
+window.addEventListener('load',function(){
+  warResizeCanvas();warFillBg();warGameLoop();
+  warAddLog('white','// SAWIE COLLECTION — CREATURE WAR');
+  warAddLog('white','// Draw & spawn creatures — last faction wins!');
+  simpleResizeCanvas();simpleFillBg();
 });
-window.addEventListener('resize', resizeDrawCanvas);
+window.addEventListener('resize',function(){warResizeCanvas();simpleResizeCanvas();});
 </script>
 </body>
 </html>
